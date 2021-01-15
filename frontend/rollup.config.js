@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import typescript from 'rollup-plugin-typescript2';
 import tscompile from 'typescript';
+import autoPreprocess from 'svelte-preprocess';
 
 const dev = Boolean(process.env.ROLLUP_WATCH);
 
@@ -22,14 +23,20 @@ export default () => {
 			},
 			preserveEntrySignatures: false,
 			plugins: [
-				svelte({ compilerOptions: { dev } }),
+				svelte({ 
+					preprocess: autoPreprocess()
+				}),
 				resolve({
 					browser: true,
-					dedupe: (importee) => importee === 'svelte' || importee.startsWith('svelte/'),
+					dedupe: ["svelte", "ts", "js"],
+					extensions: [".ts", ".js", ".json", ".svelte"],
 				}),
 				commonjs(),
 				replace({ "process.env.NODE_ENV": JSON.stringify(dev ? "development" : "production") }),
-				typescript({ typescript: tscompile }),
+				typescript({ 
+					sourceMap: dev,
+					typescript: tscompile 
+				}),
 				livereload('public'),
 			],
 			watch: {

@@ -2,7 +2,7 @@
   import { StoreProps } from './stores/interfaces';
 </script>
 
-<script lang="typescript">
+<script lang="ts">
   export let store: StoreProps;
 
   console.log('---', store.OperatorStore);
