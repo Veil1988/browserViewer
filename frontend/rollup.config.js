@@ -1,65 +1,43 @@
 import svelte from 'rollup-plugin-svelte';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
-import typescript from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-css-only';
+import typescript from "rollup-plugin-typescript2";
+import tscompile from "typescript";
 
-const production = !process.env.ROLLUP_WATCH;
+const dev = Boolean(process.env.ROLLUP_WATCH);
 
 const packs = ['user', 'operator'];
 
 export default () => {
 	const configuration = pack => {
 		return {
-			input: `src/${pack}/main.ts`,
+			input: `src/${pack}/index.ts`,
 			output: {
+				name: "app",
+				format: "iife",
 				sourcemap: true,
-				format: 'iife',
-				name: 'app',
-				file: `public/${pack}/bundle.js`
+				dir: `public/${pack}`,
 			},
+			preserveEntrySignatures: false,
 			plugins: [
-				svelte({
-					preprocess: sveltePreprocess(),
-					compilerOptions: {
-						// enable run-time checks when not in production
-						dev: !production
-					}
-				}),
-				// we'll extract any component CSS out into
-				// a separate file - better for performance
-				css({ output: 'bundle.css' }),
-
-				// If you have external dependencies installed from
-				// npm, you'll most likely need these plugins. In
-				// some cases you'll need additional configuration -
-				// consult the documentation for details:
-				// https://github.com/rollup/plugins/tree/master/packages/commonjs
+				svelte({ compilerOptions: { dev } }),
 				resolve({
 					browser: true,
-					dedupe: ['svelte']
+					dedupe: (importee) => importee === 'svelte' || importee.startsWith('svelte/'),
 				}),
 				commonjs(),
-				typescript({
-					sourceMap: !production,
-					inlineSources: !production
-				}),
-
-				// Watch the `public` directory and refresh the
-				// browser on changes when not in production
-				!production && livereload('public'),
-
-				// If we're building for production (npm run build
-				// instead of npm run dev), minify
-				production && terser()
+				replace({ "process.env.NODE_ENV": JSON.stringify(dev ? "development" : "production") }),
+				typescript({ typescript: tscompile }),
+				livereload('public'),
 			],
 			watch: {
 				clearScreen: false
 			}
 		}
 	}
+	
 	return packs.map(configuration);
+
 };

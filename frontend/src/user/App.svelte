@@ -1,30 +1,21 @@
-<script lang="ts">
-	export let name: string;
+<script context="module">
+    import { connect } from "svelte-mobx";
 </script>
 
-<main>
-	<h1>Hello user {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<script>
+    export let vm;
+    const { autorun } = connect();
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+    let currentTimeString;
+    let elapsedSecondsString;
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+    $: autorun(() => {
+        currentTimeString = vm.currentTimeString;
+        elapsedSecondsString = vm.elapsedSecondsString;
+    });
+</script>
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<div>
+    <h1>The time is {currentTimeString}</h1>
+    <div>This page has been open for {elapsedSecondsString}</div>
+</div>
