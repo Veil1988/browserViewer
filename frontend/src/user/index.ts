@@ -1,7 +1,7 @@
-import App from "./App.svelte";
-import { AppVm } from "./App.vm";
+import App from './App.svelte';
+import store from './stores';
 
 new App({
-	props: { vm: new AppVm() },
-    target: document.body,
+  props: { store },
+  target: document.body,
 });

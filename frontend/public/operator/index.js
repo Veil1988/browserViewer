@@ -4985,9 +4985,9 @@
     			div0 = element("div");
     			t3 = text("This page has been open for ");
     			t4 = text(/*elapsedSecondsString*/ ctx[1]);
-    			add_location(h1, file, 18, 4, 360);
-    			add_location(div0, file, 19, 4, 405);
-    			add_location(div1, file, 17, 0, 350);
+    			add_location(h1, file, 18, 2, 336);
+    			add_location(div0, file, 19, 2, 379);
+    			add_location(div1, file, 17, 0, 328);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5100,11 +5100,11 @@
     	}
     }
 
-    const timeFormatter = new Intl.DateTimeFormat("en", {
+    const timeFormatter = new Intl.DateTimeFormat('en', {
         hour12: true,
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
     });
 
     const UPDATE_INTERVAL = 250;
@@ -5129,7 +5129,7 @@
             return timeFormatter.format(this.currentTime);
         }
         get elapsedSecondsString() {
-            return `${this.elapsedSeconds} ${this.elapsedSeconds === 1 ? "second" : "seconds"}`;
+            return `${this.elapsedSeconds} ${this.elapsedSeconds === 1 ? 'second' : 'seconds'}`;
         }
         updateCurrentTime() {
             this.currentTime = new Date();

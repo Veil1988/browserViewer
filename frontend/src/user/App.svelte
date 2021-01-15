@@ -1,21 +1,14 @@
 <script context="module">
-    import { connect } from "svelte-mobx";
+  import { StoreProps } from './stores/interfaces';
 </script>
 
-<script>
-    export let vm;
-    const { autorun } = connect();
+<script lang="typescript">
+  export let store: StoreProps;
 
-    let currentTimeString;
-    let elapsedSecondsString;
-
-    $: autorun(() => {
-        currentTimeString = vm.currentTimeString;
-        elapsedSecondsString = vm.elapsedSecondsString;
-    });
+  console.log('---', store.OperatorStore);
 </script>
 
 <div>
-    <h1>The time is {currentTimeString}</h1>
-    <div>This page has been open for {elapsedSecondsString}</div>
+  <h1>The time is</h1>
+  <div>This page has been open for</div>
 </div>

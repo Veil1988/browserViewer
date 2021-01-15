@@ -8,7 +8,18 @@
         "sourceMap": true,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
-        "lib": ["esnext", "dom"]
+        "lib": ["esnext", "dom"],
+        "removeComments": true,
+		"alwaysStrict": true,
+		"allowUnreachableCode": false,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true
     },
     "include": ["src/**/*"]
 }
