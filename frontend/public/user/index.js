@@ -258,7 +258,6 @@
 
     function instance($$self, $$props, $$invalidate) {
     	let { store } = $$props;
-    	console.log("---", store.sessionStore.fetchIdSession);
 
     	const browserViewer = {
     		start: () => store.sessionStore.fetchIdSession(),
@@ -4928,8 +4927,8 @@
     })(TypeUsersEnum || (TypeUsersEnum = {}));
     var DevelopUrlEnum;
     (function (DevelopUrlEnum) {
-        DevelopUrlEnum["operator"] = "http://localhost:9999/operator";
-        DevelopUrlEnum["user"] = "http://localhost:9999/user";
+        DevelopUrlEnum["operator"] = "http://localhost:9999/operator/";
+        DevelopUrlEnum["user"] = "http://localhost:9999/user/";
     })(DevelopUrlEnum || (DevelopUrlEnum = {}));
     var ActionRequestEnum;
     (function (ActionRequestEnum) {
@@ -4938,10 +4937,8 @@
 
     const requestData = async (props) => {
         const { userType, requestType, } = props;
-        console.log('props', userType, requestType);
         try {
-            const url = DevelopUrlEnum[TypeUsersEnum[userType]];
-            console.log('url', url);
+            const url = `${DevelopUrlEnum[TypeUsersEnum[userType]]}${ActionRequestEnum[requestType]}`;
             const response = await fetch(url);
             return response;
         }

@@ -1,9 +1,9 @@
 import { makeAutoObservable, observable } from 'mobx';
 
-import { requestData } from './../../../utils/requestData';
+import { requestData } from 'utils/requestData';
 
 import { SessionStoreProps } from './interfaces';
-import { TypeUsersEnum, ActionRequestEnum } from './../../../utils/requestData/interfaces';
+import { TypeUsersEnum, ActionRequestEnum } from 'utils/requestData/interfaces';
 
 class SessionStoreClass {
   id: string | null = null;

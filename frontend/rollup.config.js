@@ -6,6 +6,7 @@ import livereload from 'rollup-plugin-livereload';
 import typescript from 'rollup-plugin-typescript2';
 import tscompile from 'typescript';
 import autoPreprocess from 'svelte-preprocess';
+import rootImport from 'rollup-plugin-root-import';
 
 const dev = Boolean(process.env.ROLLUP_WATCH);
 
@@ -23,6 +24,11 @@ export default () => {
 			},
 			preserveEntrySignatures: false,
 			plugins: [
+				rootImport({
+					root: `${__dirname}/src`,
+					useInput: 'entry',
+					extensions: ['.ts', '.svelte'],
+				}),
 				svelte({ 
 					preprocess: autoPreprocess()
 				}),
