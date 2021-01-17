@@ -20,6 +20,6 @@ export enum ActionRequestEnum {
 }
 
 export interface RequestDataProps {
-    userType?: keyof TypeUsersEnum
-    actionRequestType?: keyof ActionRequestEnum
+    userType: keyof typeof TypeUsersEnum,
+    requestType: keyof typeof ActionRequestEnum
 }

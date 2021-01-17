@@ -1,10 +1,9 @@
 import { makeAutoObservable, observable } from 'mobx';
 
-
-// import { requestData } from './../../../utils/requestData';
+import { requestData } from './../../../utils/requestData';
 
 import { SessionStoreProps } from './interfaces';
-// import { TypeUsersEnum, ActionRequestEnum } from './../../../utils/requestData/interfaces';
+import { TypeUsersEnum, ActionRequestEnum } from './../../../utils/requestData/interfaces';
 
 class SessionStoreClass {
   id: string | null = null;
@@ -18,9 +17,14 @@ class SessionStoreClass {
   }
 
   // ** запрос id сессии с страници приложения клиента */
-  fetchIdSession = (): void => {
+  fetchIdSession = async (): Promise<void> => {
     if (this.id === null) {
-      console.log('requestData');
+      const result = await requestData({
+        userType: TypeUsersEnum.user,
+        requestType: ActionRequestEnum.getId
+      });
+
+      console.log('result', result);
     }
   }
 

@@ -4921,13 +4921,46 @@
       });
     }
 
+    var TypeUsersEnum;
+    (function (TypeUsersEnum) {
+        TypeUsersEnum["operator"] = "operator";
+        TypeUsersEnum["user"] = "user";
+    })(TypeUsersEnum || (TypeUsersEnum = {}));
+    var DevelopUrlEnum;
+    (function (DevelopUrlEnum) {
+        DevelopUrlEnum["operator"] = "http://localhost:9999/operator";
+        DevelopUrlEnum["user"] = "http://localhost:9999/user";
+    })(DevelopUrlEnum || (DevelopUrlEnum = {}));
+    var ActionRequestEnum;
+    (function (ActionRequestEnum) {
+        ActionRequestEnum["getId"] = "getId";
+    })(ActionRequestEnum || (ActionRequestEnum = {}));
+
+    const requestData = async (props) => {
+        const { userType, requestType, } = props;
+        console.log('props', userType, requestType);
+        try {
+            const url = DevelopUrlEnum[TypeUsersEnum[userType]];
+            console.log('url', url);
+            const response = await fetch(url);
+            return response;
+        }
+        catch (error) {
+            return error;
+        }
+    };
+
     class SessionStoreClass {
         constructor() {
             this.id = null;
             this.status = null;
-            this.fetchIdSession = () => {
+            this.fetchIdSession = async () => {
                 if (this.id === null) {
-                    console.log('requestData');
+                    const result = await requestData({
+                        userType: TypeUsersEnum.user,
+                        requestType: ActionRequestEnum.getId
+                    });
+                    console.log('result', result);
                 }
             };
             this.closeSession = () => {
