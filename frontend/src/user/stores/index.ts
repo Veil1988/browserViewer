@@ -1,9 +1,9 @@
-import OperatorStore from './operatorStore';
+import sessionStore from './sessionStore';
 
 import { StoreProps } from './interfaces';
 
 const stores: StoreProps = {
-  OperatorStore,
+  sessionStore,
 };
 
 export default stores;

@@ -5,8 +5,19 @@
 	<meta name='viewport' content='width=device-width'>
 	<title>Клиент</title>
 	<link rel='stylesheet' href='global.css'>
-	<script defer src='index.js'></script>
 </head>
 <body>
+	<button id='startDemo'>Начать демонстрацию</button>
+	<button id='endDemo'>Закончит демонстрацию</button>
+	<script defer src='index.js'></script>
+	<script>
+		document.querySelector('#startDemo').addEventListener('click', () => {
+			browserViewer.start();
+		})
+
+		document.querySelector('#endDemo').addEventListener('click', () => {
+			browserViewer.close();
+		})
+	</script>
 </body>
 </html>

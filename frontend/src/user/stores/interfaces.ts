@@ -1,5 +1,5 @@
-import { OperatorStoreProps } from './operatorStore/interfaces';
+import { SessionStoreProps } from './sessionStore/interfaces';
 
 export interface StoreProps {
-  OperatorStore: OperatorStoreProps;
+  sessionStore: SessionStoreProps;
 }

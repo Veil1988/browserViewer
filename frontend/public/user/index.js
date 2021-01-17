@@ -258,7 +258,14 @@
 
     function instance($$self, $$props, $$invalidate) {
     	let { store } = $$props;
-    	console.log("---", store.OperatorStore);
+    	console.log("---", store.sessionStore.fetchIdSession);
+
+    	const browserViewer = {
+    		start: () => store.sessionStore.fetchIdSession(),
+    		close: () => store.sessionStore.closeSession()
+    	};
+
+    	window.browserViewer = browserViewer;
 
     	$$self.$$set = $$props => {
     		if ("store" in $$props) $$invalidate(0, store = $$props.store);
@@ -4914,20 +4921,30 @@
       });
     }
 
-    class OperatorStoreClass {
+    class SessionStoreClass {
         constructor() {
-            this.startTime = new Date();
-            this.currentTime = new Date();
+            this.id = null;
+            this.status = null;
+            this.fetchIdSession = () => {
+                if (this.id === null) {
+                    console.log('requestData');
+                }
+            };
+            this.closeSession = () => {
+                this.id = null;
+                this.status = null;
+                console.log('pizda');
+            };
             makeAutoObservable(this, {
-                startTime: observable,
-                currentTime: observable,
+                id: observable,
+                status: observable,
             });
         }
     }
-    const OperatorStore = new OperatorStoreClass();
+    const sessionStore = new SessionStoreClass();
 
     const stores = {
-        OperatorStore,
+        sessionStore,
     };
 
     new App({
