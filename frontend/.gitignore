@@ -5,7 +5,7 @@
 /public/user/index.js
 /public/user/index.js.map
 /public/bundle.css
-/public/index.js
-/public/index.js.map
+./frontend/public/user/index.js
+./frontend/public/user/index.js.map
 .vscode
 .DS_Store

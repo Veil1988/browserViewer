@@ -5,8 +5,6 @@
 <script lang="ts">
   export let store: StoreProps;
 
-  console.log('---', store.sessionStore.fetchIdSession);
-
   /**
    * Передаваемая во вне для управления приложением на клиенте
    */

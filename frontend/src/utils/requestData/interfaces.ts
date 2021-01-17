@@ -9,8 +9,8 @@ export enum TypeUsersEnum {
 
 /** URL для запросов из DEV среды */
 export enum DevelopUrlEnum {
-    operator = 'http://localhost:9999/operator',
-    user = 'http://localhost:9999/user'
+    operator = 'http://localhost:9999/operator/',
+    user = 'http://localhost:9999/user/'
 }
 
 /** Типы запросов */
