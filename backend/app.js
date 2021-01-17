@@ -6,6 +6,15 @@ const cors = require("cors");
 const app = express();
 
 const allowedOrigins = ["http://localhost:5000"];
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
+app.use(bodyParser.text());
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -21,7 +30,6 @@ app.use(
 );
 
 app.use("/", routerRest);
-app.use(bodyParser.json());
 
 app.listen(9999, () => {
   console.log("server started on localhost:9999");

@@ -13,13 +13,33 @@ export enum DevelopUrlEnum {
     user = 'http://localhost:9999/user/'
 }
 
+/** Методы запросов */
+export enum MethodEnum {
+    post = 'POST',
+    get = 'GET'
+}
+
 /** Типы запросов */
 export enum ActionRequestEnum {
     /** Запрос ID сессии для клиента */
-    getId = 'getId',
+    getSessionId = 'getSessionId',
+    /** Закрытие сессии */
+    closeSession = 'closeSession'
 }
 
-export interface RequestDataProps {
+/** Тело запроса на закрытие сессии */
+export interface CloseSessionBody {
+    sessionId: number;
+}
+
+/** Типизирование всех возможных тел запроса */
+export interface RequestDataBodyProps {
+    data?: CloseSessionBody | null;
+}
+
+/** Типизация входящих параметров в RequestData */
+export interface RequestDataProps extends RequestDataBodyProps {
     userType: keyof typeof TypeUsersEnum,
-    requestType: keyof typeof ActionRequestEnum
+    requestType: keyof typeof ActionRequestEnum,
+    method: MethodEnum.get | MethodEnum.post,
 }

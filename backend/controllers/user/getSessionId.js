@@ -16,7 +16,7 @@ const getRandomInt = (min, max) => {
 // генератор ID сессий
 const generateSessionId = () => {
   const generatedId = getRandomInt(minId, maxId);
-  // сгенерировал существующий id
+  // сгенерировал существующий ID
   if (generatedId in sessions && tryCount <= maxTryCount) {
     generateSessionId();
   }
@@ -24,15 +24,14 @@ const generateSessionId = () => {
   if (generatedId in sessions && tryCount >= maxTryCount) {
     return null;
   }
-  // удачно сгенерил id
+  // удачно сгенерил ID сессии
   if (!(generatedId in sessions) && tryCount <= maxTryCount) {
     sessions[generatedId] = {
-      status: "AWAIT",
+      status: "await",
       operatorId: null,
       messageToUser: null,
       messageToOperator: null,
     };
-    console.log("session", sessions);
     return generatedId;
   }
 };
