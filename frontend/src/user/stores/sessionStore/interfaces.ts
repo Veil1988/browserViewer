@@ -5,6 +5,12 @@ export interface SessionStoreProps {
   fetchIdSession: () => void;
   //** закрытие сессии со стороны приложения клиента и самого приложения */
   closeSession: () => void;
+  //** SSE */
+  // TODO убрать any нахуй
+  eventSource: any;
+  // ** Входящее сообщение от оператора */
+  // TODO убрать any нахуй
+  entryMessage: any;
 }
 // ** статусы сессии await|active */
 export enum SessionStatusEnum {

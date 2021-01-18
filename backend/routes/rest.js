@@ -38,6 +38,22 @@ router.post("/user/closeSession", async (req, res) => {
   }
 });
 
+router.get('/user/userEventSource', async (req, res) => {
+  console.log('got events');
+  res.header({
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'text/event-stream',
+    'Connection': 'keep-alive'
+  })
+  res.flushHeaders();
+  let count = 0;
+  while (true) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log('Emmit', ++count);
+    res.status(200).write(`data: ${count}\n\n`);
+  }
+});
+
 // OPERATOR
 
 module.exports = router;

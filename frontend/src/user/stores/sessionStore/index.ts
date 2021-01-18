@@ -1,20 +1,29 @@
-import { makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 import { requestData } from 'utils/requestData';
 
 import { SessionStoreProps, SessionStatusEnum } from './interfaces';
-import { TypeUsersEnum, ActionRequestEnum, MethodEnum } from 'utils/requestData/interfaces';
+import { TypeUsersEnum, ActionRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
 
 class SessionStoreClass {
   // ** id сессии для пользователя */
   sessionId: number | null = null;
   // ** статус сессии await|active|null */
   status: keyof typeof SessionStatusEnum | null = null;
+  // ** SSE конструктор */
+  // TODO убрать any нахуй
+  eventSource: any = null;
+
+  // ** входящее сообщени */
+  // TODO убрать any нахуй
+  entryMessage: any = null;
 
   constructor() {
     makeAutoObservable(this, {
       sessionId: observable,
       status: observable,
+      eventSource: observable,
+      entryMessage: action,
     });
   }
 
@@ -26,10 +35,11 @@ class SessionStoreClass {
         requestType: ActionRequestEnum.getSessionId,
         method: MethodEnum.get,
       });
-      // ** успешный ответ */
+      // ** успешный ответ записываем переменные и создаем SSE */
       if (result?.sessionId) {
         this.sessionId = result.sessionId;
         this.status = SessionStatusEnum.await;
+        this.createServerSubscribeEvents();
       }
       // ** TODO ошибка */
     }
@@ -53,6 +63,18 @@ class SessionStoreClass {
       console.log('pizda', result);
     }
     // ** TODO ошибка если гавно с ID и его нету */
+  }
+
+  // ** создание SSE для клиента */
+  createServerSubscribeEvents = async () => {
+    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionRequestEnum.userEventSource}`;
+    this.eventSource = await new EventSource(url);
+    // TODO Нахуй any
+  }
+
+  // ** закрытие SSE для клиента */
+  closeServerEvents = async () => {
+    this.eventSource.close();
   }
 }
 

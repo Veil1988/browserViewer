@@ -1,9 +1,12 @@
 <script context="module">
   import { StoreProps } from './stores/interfaces';
+  import { connect } from 'svelte-mobx';
 </script>
 
 <script lang="ts">
   export let store: StoreProps;
+
+  const { autorun } = connect();
 
   /**
    * Передаваемая во вне для управления приложением на клиенте
@@ -12,15 +15,20 @@
     start: () => store.sessionStore.fetchIdSession(),
     close: () => store.sessionStore.closeSession(),
   };
-
+  let x: any;
+  $: autorun(() => {
+    x = store.sessionStore.entryMessage;
+  })
   // store.sessionStore.fetchIdSession();
 
   window.browserViewer = browserViewer;
+  
+  console.log('suka', x);
+  
 
-  // fetchIdSession();
 </script>
 
 <div>
-  <h1>The time is</h1>
+  <h1>The time is${x}</h1>
   <div>This page has been open for</div>
 </div>

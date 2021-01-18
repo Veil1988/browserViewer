@@ -10,7 +10,7 @@ export enum TypeUsersEnum {
 /** URL для запросов из DEV среды */
 export enum DevelopUrlEnum {
     operator = 'http://localhost:9999/operator/',
-    user = 'http://localhost:9999/user/'
+    user = 'http://localhost:9999/user/',
 }
 
 /** Методы запросов */
@@ -24,7 +24,9 @@ export enum ActionRequestEnum {
     /** Запрос ID сессии для клиента */
     getSessionId = 'getSessionId',
     /** Закрытие сессии */
-    closeSession = 'closeSession'
+    closeSession = 'closeSession',
+    /** Подписка на события */
+    userEventSource = 'userEventSource',
 }
 
 /** Тело запроса на закрытие сессии */
