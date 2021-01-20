@@ -1,6 +1,7 @@
-import { action, makeAutoObservable, observable } from 'mobx';
+import { makeAutoObservable, observable } from 'mobx';
 
 import { requestData } from 'utils/requestData';
+import { sseReciver } from 'utils/sseReciver';
 
 import { SessionStoreProps, SessionStatusEnum } from './interfaces';
 import { TypeUsersEnum, ActionRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
@@ -23,8 +24,8 @@ class SessionStoreClass {
       sessionId: observable,
       status: observable,
       eventSource: observable,
-      entryMessage: action,
-    });
+      entryMessage: observable,
+    })
   }
 
   // ** запрос id сессии с страници приложения клиента */
@@ -49,7 +50,7 @@ class SessionStoreClass {
   // ** закрытие сессии со стороны приложения клиента и самого приложения */
   closeSession = async (): Promise<void> => {
     if (this.sessionId) {
-      const result = await requestData({
+      await requestData({
         userType: TypeUsersEnum.user,
         requestType: ActionRequestEnum.closeSession,
         method: MethodEnum.post,
@@ -60,7 +61,6 @@ class SessionStoreClass {
       // ** очистка store сессии */
       this.sessionId = null;
       this.status = null;
-      console.log('pizda', result);
     }
     // ** TODO ошибка если гавно с ID и его нету */
   }
@@ -68,8 +68,9 @@ class SessionStoreClass {
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
     const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionRequestEnum.userEventSource}`;
-    this.eventSource = await new EventSource(url);
+    this.eventSource = new EventSource(url);
     // TODO Нахуй any
+    sseReciver(this.eventSource);
   }
 
   // ** закрытие SSE для клиента */
