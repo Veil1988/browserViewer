@@ -13,7 +13,6 @@ class SessionStoreClass {
   // ** статус сессии await|active|null */
   status: keyof typeof SessionStatusEnum | null = null;
   // ** SSE конструктор */
-  // TODO убрать any нахуй
   eventSource: EventSource | null = null;
 
   // ** входящее сообщени */
@@ -41,6 +40,7 @@ class SessionStoreClass {
       // ** успешный ответ записываем переменные и создаем SSE */
       if (result?.sessionId) {
         this.sessionId = result.sessionId;
+        // TODO убрать await будет отдаваться с сервера
         this.status = SessionStatusEnum.await;
         this.createServerSubscribeEvents();
       }
@@ -69,7 +69,9 @@ class SessionStoreClass {
 
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
-    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionRequestEnum.userEventSource}/sessionCode=${this.sessionId}`;
+    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}
+      ${ActionRequestEnum.userEventSource}
+      /sessionCode=${this.sessionId}`;
     this.eventSource = new EventSource(url);
     sseReciver({
       eventSource: this.eventSource,
@@ -79,13 +81,12 @@ class SessionStoreClass {
 
   // ** закрытие SSE для клиента */
   closeServerEvents = async () => {
-    if (this.eventSource) {
-      this.eventSource.close();
-    }
+    if (this.eventSource) this.eventSource.close();
   }
 
   // ** cb переданный в sseReciver для обработки сообщений */
   setEntryMessageFromSse = (msg: any) => {
+    // TODO состояние сессии в отдельную переменную data отдельно
     if (this.entryMessage !== msg.data) this.entryMessage = msg.data;
   }
 }
