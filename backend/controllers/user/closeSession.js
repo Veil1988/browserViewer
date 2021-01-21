@@ -1,7 +1,6 @@
 const sessions = require("./../../models/sessions");
 
 const closeSession = async (id) => {
-  console.log("dasdas", id);
   if (id in sessions) {
     const { status } = sessions[id];
     console.log("---", sessions);

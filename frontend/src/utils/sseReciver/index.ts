@@ -1,7 +1,8 @@
-export const sseReciver = (eventSource: any) => {
-    if (eventSource) {
+export const sseReciver = (props: any) => {
+    const { eventSource, cbMessage } = props;
+    if (eventSource && cbMessage) {
         eventSource.addEventListener('message', (event: any) => {
-            console.log('event', event);
+            cbMessage(event);
         })
     }
 }

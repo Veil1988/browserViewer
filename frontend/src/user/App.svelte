@@ -18,14 +18,10 @@
   let x: any;
   $: autorun(() => {
     x = store.sessionStore.entryMessage;
-  })
+  });
   // store.sessionStore.fetchIdSession();
-
+  console.log('---', x);
   window.browserViewer = browserViewer;
-  
-  console.log('suka', x);
-  
-
 </script>
 
 <div>

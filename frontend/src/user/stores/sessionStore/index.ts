@@ -1,9 +1,10 @@
-import { makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 import { requestData } from 'utils/requestData';
 import { sseReciver } from 'utils/sseReciver';
 
 import { SessionStoreProps, SessionStatusEnum } from './interfaces';
+import EventSource from 'eventsource';
 import { TypeUsersEnum, ActionRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
 
 class SessionStoreClass {
@@ -13,7 +14,7 @@ class SessionStoreClass {
   status: keyof typeof SessionStatusEnum | null = null;
   // ** SSE конструктор */
   // TODO убрать any нахуй
-  eventSource: any = null;
+  eventSource: EventSource | null = null;
 
   // ** входящее сообщени */
   // TODO убрать any нахуй
@@ -25,6 +26,7 @@ class SessionStoreClass {
       status: observable,
       eventSource: observable,
       entryMessage: observable,
+      setEntryMessageFromSse: action,
     })
   }
 
@@ -67,15 +69,24 @@ class SessionStoreClass {
 
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
-    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionRequestEnum.userEventSource}`;
+    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionRequestEnum.userEventSource}/sessionCode=${this.sessionId}`;
     this.eventSource = new EventSource(url);
-    // TODO Нахуй any
-    sseReciver(this.eventSource);
+    sseReciver({
+      eventSource: this.eventSource,
+      cbMessage: this.setEntryMessageFromSse,
+    });
   }
 
   // ** закрытие SSE для клиента */
   closeServerEvents = async () => {
-    this.eventSource.close();
+    if (this.eventSource) {
+      this.eventSource.close();
+    }
+  }
+
+  // ** cb переданный в sseReciver для обработки сообщений */
+  setEntryMessageFromSse = (msg: any) => {
+    if (this.entryMessage !== msg.data) this.entryMessage = msg.data;
   }
 }
 

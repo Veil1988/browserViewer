@@ -4,6 +4,7 @@ const router = express.Router();
 
 const generateSessionId = require("./../controllers/user/getSessionId");
 const closeSession = require("./../controllers/user/closeSession");
+const observeIncommingMessage = require("./../controllers/user/observeIncommingMessages");
 
 // USER
 router.get("/user/getSessionId", async (req, res) => {
@@ -38,20 +39,17 @@ router.post("/user/closeSession", async (req, res) => {
   }
 });
 
-router.get('/user/userEventSource', async (req, res) => {
-  console.log('got events');
-  res.header({
-    'Cache-Control': 'no-cache',
-    'Content-Type': 'text/event-stream',
-    'Connection': 'keep-alive'
-  })
+router.get("/user/userEventSource/:sessionCode", async (req, res) => {
+  console.log("got events");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.flushHeaders();
-  let count = 0;
-  while (true) {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Emmit', ++count);
-    res.status(200).write(`data: ${count}\n\n`);
-  }
+
+  console.log("req", req.params.sessionCode);
+  const sessionCode = req.params.sessionCode.split("=")[1];
+  observeIncommingMessage({ sessionCode, cbRes: res });
+  
 });
 
 // OPERATOR

@@ -18,14 +18,17 @@ const generateSessionId = () => {
   const generatedId = getRandomInt(minId, maxId);
   // сгенерировал существующий ID
   if (generatedId in sessions && tryCount <= maxTryCount) {
+    tryCount++;
     generateSessionId();
   }
   // истекло кол-во попыток
   if (generatedId in sessions && tryCount >= maxTryCount) {
+    tryCount = 0;
     return null;
   }
   // удачно сгенерил ID сессии
   if (!(generatedId in sessions) && tryCount <= maxTryCount) {
+    tryCount = 0;
     sessions[generatedId] = {
       status: "await",
       operatorId: null,
