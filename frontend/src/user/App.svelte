@@ -1,29 +1,27 @@
 <script context="module">
-  import { StoreProps } from './stores/interfaces';
   import { connect } from 'svelte-mobx';
+  import stores from './stores';
 
   import './root.css';
 </script>
 
 <script lang="ts">
-  export let store: StoreProps;
-
   const { autorun } = connect();
 
   /**
    * Передаваемая во вне для управления приложением на клиенте
    */
   const browserViewer = {
-    start: () => store.sessionStore.fetchIdSession(),
-    close: () => store.sessionStore.closeSession(),
+    start: () => stores.sessionStore.fetchIdSession(),
+    close: () => stores.sessionStore.closeSession(),
   };
   let x: any;
   $: autorun(() => {
-    x = store.sessionStore.entryMessage;
+    x = stores.sessionStore.entryMessage;
   });
-  // store.sessionStore.fetchIdSession();
-  console.log('---', x);
+
   window.browserViewer = browserViewer;
+
 </script>
 
 <!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->

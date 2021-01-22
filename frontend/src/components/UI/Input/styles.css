@@ -1,0 +1,16 @@
+input {
+    padding: 14px 32px;
+
+    width: 100%;
+
+    border: 1px solid var(--border-white);
+    border-radius: 32px;
+
+    background: var(--main-white);
+    outline: none;
+
+    text-align: center;
+    color: var(--main-text-color);
+    font-size: var(--title-size);
+    transition: all .25s;
+}

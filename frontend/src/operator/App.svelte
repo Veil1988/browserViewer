@@ -1,22 +1,18 @@
 <script context="module">
   import AuthPage from './pages/authPage/index.svelte';
-
-  import { StoreProps } from './stores/interfaces';
   import { connect } from 'svelte-mobx';
+  import stores from './stores';
 
   import './root.css';
 </script>
 
 <script lang="ts">
-  export let store: StoreProps;
-
   const { autorun } = connect();
 
   let isAuthonticadesOperator: boolean = false;
   $: autorun(() => {
-    isAuthonticadesOperator = store.authStore.isAuthonticadesOperator;
+    isAuthonticadesOperator = stores.authStore.isAuthonticadesOperator;
   });
-
 </script>
 
 <!-- Компонент отвечает за роутинг оператора между страницами -->
