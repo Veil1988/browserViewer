@@ -1,4 +1,4 @@
-import { AuthStoreProps } from './connectionStore/interfaces';
+import { AuthStoreProps } from './authStore/interfaces';
 
 export interface StoreProps {
     authStore: AuthStoreProps
