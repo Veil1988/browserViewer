@@ -28,7 +28,7 @@ export default () => {
 				rootImport({
 					root: `${__dirname}/src`,
 					useInput: 'entry',
-					extensions: ['.ts', '.svelte'],
+					extensions: ['*.ts', '*.svelte'],
 				}),
 				css({ 
 					output: 'bundle.css' 
@@ -38,8 +38,9 @@ export default () => {
 				}),
 				resolve({
 					browser: true,
-					dedupe: ["svelte", "ts", "js", '.css'],
-					extensions: [".ts", ".js", ".json", ".svelte", 'css'],
+					main: true,
+					dedupe: ["svelte", "ts", "js"],
+					extensions: [".ts", ".js", ".json", ".svelte"],
 				}),
 				commonjs(),
 				replace({ "process.env.NODE_ENV": JSON.stringify(dev ? "development" : "production") }),
