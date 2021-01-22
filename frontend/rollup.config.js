@@ -7,6 +7,7 @@ import typescript from 'rollup-plugin-typescript2';
 import tscompile from 'typescript';
 import autoPreprocess from 'svelte-preprocess';
 import rootImport from 'rollup-plugin-root-import';
+import css from 'rollup-plugin-css-only';
 
 const dev = Boolean(process.env.ROLLUP_WATCH);
 
@@ -29,13 +30,16 @@ export default () => {
 					useInput: 'entry',
 					extensions: ['.ts', '.svelte'],
 				}),
+				css({ 
+					output: 'bundle.css' 
+				}),
 				svelte({ 
 					preprocess: autoPreprocess()
 				}),
 				resolve({
 					browser: true,
-					dedupe: ["svelte", "ts", "js"],
-					extensions: [".ts", ".js", ".json", ".svelte"],
+					dedupe: ["svelte", "ts", "js", '.css'],
+					extensions: [".ts", ".js", ".json", ".svelte", 'css'],
 				}),
 				commonjs(),
 				replace({ "process.env.NODE_ENV": JSON.stringify(dev ? "development" : "production") }),

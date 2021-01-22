@@ -1,6 +1,8 @@
 <script context="module">
   import { StoreProps } from './stores/interfaces';
   import { connect } from 'svelte-mobx';
+
+  import './root.css';
 </script>
 
 <script lang="ts">

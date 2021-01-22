@@ -3,6 +3,8 @@
 
   import { StoreProps } from './stores/interfaces';
   import { connect } from 'svelte-mobx';
+
+  import './root.css';
 </script>
 
 <script lang="ts">
@@ -15,7 +17,6 @@
     isAuthonticadesOperator = store.authStore.isAuthonticadesOperator;
   });
 
-  console.log('---', isAuthonticadesOperator);
 </script>
 
 <!-- Компонент отвечает за роутинг оператора между страницами -->

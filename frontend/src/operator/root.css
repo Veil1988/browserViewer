@@ -1,0 +1,46 @@
+
+:root {
+    /* ---- COLORS ---- */
+    /* Body */
+    --main-body-color: #f5f7fa;
+    /* Green */
+    --main-green: #61c076;
+    --hover-green: #57b76c;
+    --click-green: #4da861;
+  
+    /* Red */
+    --main-red: #ff6969;
+    --hover-red: #fb6060;
+    --click-red: #f55151;
+  
+    /* White */
+    --main-white: #fff;
+    --hover-white: #f8fafc;
+    --click-white: #eef1f7;
+    --selected-white: #f5f7fa;
+    --border-white: #DAE0EA;
+    --disabled-white: #BDC9DB;
+    --disabled-icon: #4D5B6F;
+  
+    /* Blue */
+    --main-blue: #3c88e0;
+  
+    /* Yellow */
+    --main-yellow: #fcb85f;
+  
+    /* ---- TEXT COLOR ---- */
+    --main-text-color: #343E4B;
+    --light-main-text-color: #b3c1d5;
+    --sub-text-color: #758aa8;
+    --green-text-color: #61c076;
+    --white-text-color: #fff;
+    --support-text-color: #3c88E0;
+  
+    /* ---- FONT SIZE ---- */
+    --sub-title-size: 12px;
+    --default-size: 14px;
+    --title-size: 16px;
+    --big-size: 20px;
+    --giant-size: 24px;
+  }
+  
