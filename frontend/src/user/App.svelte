@@ -24,6 +24,7 @@
   window.browserViewer = browserViewer;
 </script>
 
+<!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->
 <div>
   <h1>The time is${x}</h1>
   <div>This page has been open for</div>

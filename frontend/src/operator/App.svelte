@@ -1,21 +1,26 @@
 <script context="module">
+  import AuthPage from './pages/authPage/index.svelte';
+
+  import { StoreProps } from './stores/interfaces';
   import { connect } from 'svelte-mobx';
 </script>
 
-<script>
-  export let vm;
+<script lang="ts">
+  export let store: StoreProps;
+
   const { autorun } = connect();
 
-  let currentTimeString;
-  let elapsedSecondsString;
-
+  let isAuthonticadesOperator: boolean = false;
   $: autorun(() => {
-    currentTimeString = vm.currentTimeString;
-    elapsedSecondsString = vm.elapsedSecondsString;
+    isAuthonticadesOperator = store.authStore.isAuthonticadesOperator;
   });
+
+  console.log('---', isAuthonticadesOperator);
 </script>
 
+<!-- Компонент отвечает за роутинг оператора между страницами -->
 <div>
-  <h1>The time is {currentTimeString}</h1>
-  <div>This page has been open for {elapsedSecondsString}</div>
+  {#if !isAuthonticadesOperator}
+    <AuthPage />
+  {/if}
 </div>
