@@ -1,5 +1,6 @@
 <script context="module">
   import AuthPage from './pages/authPage/index.svelte';
+  import ConnectionPage from './pages/connectionPage/index.svelte';
   import { connect } from 'svelte-mobx';
   import stores from './stores';
 
@@ -19,5 +20,7 @@
 <div>
   {#if !isAuthonticadesOperator}
     <AuthPage />
+  {:else}
+    <ConnectionPage />
   {/if}
 </div>
