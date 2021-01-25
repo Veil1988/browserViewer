@@ -1,0 +1,44 @@
+button {
+  border-radius: 32px;
+
+  outline: none !important;
+  padding: 14px 20px;
+
+  font-weight: 600;
+  font-size: var(--title-size);
+  line-height: 20px;
+  color: var(--main-white);
+
+  cursor: pointer;
+  border-style: none;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+button:disabled,
+.ButtonGreen:disabled {
+    background-color: var(--disabled-white);
+
+    pointer-events: none;
+}
+
+.ButtonGreen {
+    background: var(--main-green);
+  
+    transition: color 0.25s;
+}
+
+.ButtonGreen:active {
+    background: var(--click-green);
+  
+    transition: color 0.25s;
+}
+
+.ButtonGreen:hover {
+    background: var(--hover-green);
+  
+    transition: color 0.25s;
+}

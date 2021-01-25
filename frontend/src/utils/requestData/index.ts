@@ -1,4 +1,4 @@
-import { RequestDataProps, DevelopUrlEnum, TypeUsersEnum, ActionRequestEnum } from './interfaces';
+import { RequestDataProps, DevelopUrlEnum, TypeUsersEnum } from './interfaces';
 import { header } from './constants';
 
 // ** Шаблон запросов */
@@ -11,7 +11,7 @@ export const requestData = async (props: RequestDataProps): Promise<any> => {
     } = props;
     try {
         // ** сборка URL из enum ов тип пользователя и среды разработки */
-        const url = `${DevelopUrlEnum[TypeUsersEnum[userType]]}${ActionRequestEnum[requestType]}`;
+        const url = `${DevelopUrlEnum[TypeUsersEnum[userType]]}${requestType}`;
 
         const body = data ? {
             body: JSON.stringify(data)

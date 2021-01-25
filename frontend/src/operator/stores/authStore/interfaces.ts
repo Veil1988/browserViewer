@@ -2,7 +2,9 @@ export interface AuthStoreProps {
     // ** Логин оператора */
     operatorLogin: string
     // ** Пароль оператора */
-    oparatorPassword: string
+    operatorPassword: string
     // ** статус авторизации оператора */
-    isAuthonticadesOperator: boolean 
+    isAuthonticadesOperator: boolean
+    // ** Статус Авторизации */
+    isLoading: boolean;
 }

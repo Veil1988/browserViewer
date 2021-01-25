@@ -5,7 +5,7 @@ import { sseReciver } from 'utils/sseReciver';
 
 import { SessionStoreProps, SessionStatusEnum } from './interfaces';
 import EventSource from 'eventsource';
-import { TypeUsersEnum, ActionRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
+import { TypeUsersEnum, ActionUserRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
 
 class SessionStoreClass {
   // ** id сессии для пользователя */
@@ -34,7 +34,7 @@ class SessionStoreClass {
     if (this.sessionId === null) {
       const result = await requestData({
         userType: TypeUsersEnum.user,
-        requestType: ActionRequestEnum.getSessionId,
+        requestType: ActionUserRequestEnum.getSessionId,
         method: MethodEnum.get,
       });
       // ** успешный ответ записываем переменные и создаем SSE */
@@ -54,7 +54,7 @@ class SessionStoreClass {
     if (this.sessionId) {
       await requestData({
         userType: TypeUsersEnum.user,
-        requestType: ActionRequestEnum.closeSession,
+        requestType: ActionUserRequestEnum.closeSession,
         method: MethodEnum.post,
         data: {
           sessionId: this.sessionId
@@ -70,7 +70,7 @@ class SessionStoreClass {
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
     const url = `${DevelopUrlEnum[TypeUsersEnum.user]}
-      ${ActionRequestEnum.userEventSource}
+      ${ActionUserRequestEnum.userEventSource}
       /sessionCode=${this.sessionId}`;
     this.eventSource = new EventSource(url);
     sseReciver({

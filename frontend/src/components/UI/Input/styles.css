@@ -1,5 +1,7 @@
 input {
-    padding: 14px 32px;
+    margin-bottom: 20px;
+
+    padding: 14px 0;
 
     width: 100%;
 
@@ -14,3 +16,13 @@ input {
     font-size: var(--title-size);
     transition: all .25s;
 }
+
+input:focus {
+    border: 1px solid var(--main-blue);
+    background: var(--main-white);
+}
+
+.input-valid {
+    border: 1px solid var(--main-green);
+}
+

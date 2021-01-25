@@ -19,8 +19,14 @@ export enum MethodEnum {
     get = 'GET'
 }
 
-/** Типы запросов */
-export enum ActionRequestEnum {
+/** Типы запросов оператора */
+export enum ActionOperatorEnum {
+    /** Авторизация оператора */
+    auth = 'auth',
+}
+
+/** Типы запросов пользователя */
+export enum ActionUserRequestEnum {
     /** Запрос ID сессии для клиента */
     getSessionId = 'getSessionId',
     /** Закрытие сессии */
@@ -34,14 +40,20 @@ export interface CloseSessionBody {
     sessionId: number;
 }
 
+/** Тело запроса авторизации оператора */
+export interface AuthOperator {
+    password: string,
+    login: string
+}
+
 /** Типизирование всех возможных тел запроса */
 export interface RequestDataBodyProps {
-    data?: CloseSessionBody | null;
+    data?: CloseSessionBody | AuthOperator | null;
 }
 
 /** Типизация входящих параметров в RequestData */
 export interface RequestDataProps extends RequestDataBodyProps {
     userType: keyof typeof TypeUsersEnum,
-    requestType: keyof typeof ActionRequestEnum,
+    requestType: keyof typeof ActionUserRequestEnum | keyof typeof ActionOperatorEnum,
     method: MethodEnum.get | MethodEnum.post,
 }

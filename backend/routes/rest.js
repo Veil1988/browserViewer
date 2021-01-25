@@ -49,9 +49,15 @@ router.get("/user/userEventSource/:sessionCode", async (req, res) => {
   console.log("req", req.params.sessionCode);
   const sessionCode = req.params.sessionCode.split("=")[1];
   observeIncommingMessage({ sessionCode, cbRes: res });
-  
 });
 
 // OPERATOR
+// TODO нету базы открывается тапком
+router.post("/operator/auth", async (req, res) => {
+  const { body: bodyJSON } = req;
+  const body = await JSON.parse(bodyJSON);
+  console.log("body", body);
+  res.status(200).send({ isAuthonticadesOperator: true });
+});
 
 module.exports = router;
