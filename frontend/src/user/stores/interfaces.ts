@@ -1,5 +1,5 @@
-import { SessionStoreProps } from './sessionStore/interfaces';
+import { ConnectionStoreProps } from './connectionStore/interfaces';
 
 export interface StoreProps {
-  sessionStore: SessionStoreProps;
+  connectionStore: ConnectionStoreProps;
 }

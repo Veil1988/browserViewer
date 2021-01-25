@@ -1,4 +1,4 @@
-export interface SessionStoreProps {
+export interface ConnectionStoreProps {
   // ** ID сессии */
   sessionId: number | null;
   // ** запрос id сессии с страници приложения клиента */

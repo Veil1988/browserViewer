@@ -3,6 +3,7 @@
   // TODO разобраться что за хуйня с index.ts/svelte
   import Input from '/components/UI/Input/index.svelte';
   import Button from '/components/UI/Buttons/Simple/index.svelte';
+
   import stores from '/operator/stores/index.ts';
   import { connect } from 'svelte-mobx';
 

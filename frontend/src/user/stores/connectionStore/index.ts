@@ -3,11 +3,11 @@ import { action, makeAutoObservable, observable } from 'mobx';
 import { requestData } from 'utils/requestData';
 import { sseReciver } from 'utils/sseReciver';
 
-import { SessionStoreProps, SessionStatusEnum } from './interfaces';
+import { ConnectionStoreProps, SessionStatusEnum } from './interfaces';
 import EventSource from 'eventsource';
 import { TypeUsersEnum, ActionUserRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
 
-class SessionStoreClass {
+class ConnectionStoreClass {
   // ** id сессии для пользователя */
   sessionId: number | null = null;
   // ** статус сессии await|active|null */
@@ -69,9 +69,7 @@ class SessionStoreClass {
 
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
-    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}
-      ${ActionUserRequestEnum.userEventSource}
-      /sessionCode=${this.sessionId}`;
+    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionUserRequestEnum.userEventSource}/sessionCode=${this.sessionId}`;
     this.eventSource = new EventSource(url);
     sseReciver({
       eventSource: this.eventSource,
@@ -91,6 +89,6 @@ class SessionStoreClass {
   }
 }
 
-const sessionStore: SessionStoreProps = new SessionStoreClass();
+const connectionStore: ConnectionStoreProps = new ConnectionStoreClass();
 
-export default sessionStore;
+export default connectionStore;

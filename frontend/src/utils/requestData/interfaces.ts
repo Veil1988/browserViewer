@@ -20,9 +20,11 @@ export enum MethodEnum {
 }
 
 /** Типы запросов оператора */
-export enum ActionOperatorEnum {
+export enum ActionOperatorRequestEnum {
     /** Авторизация оператора */
     auth = 'auth',
+    /** Получение id сессий в статусе await */
+    getSessionList = 'getSessionList'
 }
 
 /** Типы запросов пользователя */
@@ -54,6 +56,6 @@ export interface RequestDataBodyProps {
 /** Типизация входящих параметров в RequestData */
 export interface RequestDataProps extends RequestDataBodyProps {
     userType: keyof typeof TypeUsersEnum,
-    requestType: keyof typeof ActionUserRequestEnum | keyof typeof ActionOperatorEnum,
+    requestType: keyof typeof ActionUserRequestEnum | keyof typeof ActionOperatorRequestEnum,
     method: MethodEnum.get | MethodEnum.post,
 }

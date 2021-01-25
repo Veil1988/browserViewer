@@ -7,21 +7,14 @@ const observeIncommingMessage = (props) => {
   if (sessions[sessionCode]) {
     const { watch, unwatch } = watchObject;
     watch(sessions[sessionCode], (newVal, oldVal) => {
-      if (
-        newVal.status !== oldVal.status ||
-        newVal.messageToUser !== oldVal.messageToUser
-      ) {
-        // todo обработчик завершения сессии
-        const resBody = {
-          status: sessions[sessionCode].status,
-          messageToUser: sessions[sessionCode].messageToUser,
-        };
-        const resBodyJson = JSON.stringify(resBody);
-        cbRes.status(200).write(`data: ${resBodyJson}\n\n`);
-      }
+      // todo обработчик завершения сессии
+      const resBody = {
+        status: sessions[sessionCode].status,
+        messageToUser: sessions[sessionCode].messageToUser,
+      };
+      const resBodyJson = JSON.stringify(resBody);
+      cbRes.status(200).write(`data: ${resBodyJson}\n\n`);
     });
-    sessions[sessionCode].status = "suka";
-    setTimeout(() => (sessions[sessionCode].messageToUser = "pes"), 5000);
   }
 };
 

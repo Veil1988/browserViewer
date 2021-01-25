@@ -4,7 +4,7 @@ import { requestData } from 'utils/requestData';
 
 import { AuthStoreProps } from './interfaces';
 
-import { TypeUsersEnum, ActionOperatorEnum, MethodEnum } from 'utils/requestData/interfaces';
+import { TypeUsersEnum, ActionOperatorRequestEnum, MethodEnum } from 'utils/requestData/interfaces';
 
 class AuthStoreClass {
     // ** Логин оператора */
@@ -41,7 +41,7 @@ class AuthStoreClass {
 
       const result = await requestData({
         userType: TypeUsersEnum.operator,
-        requestType: ActionOperatorEnum.auth,
+        requestType: ActionOperatorRequestEnum.auth,
         method: MethodEnum.post,
         data: {
           login: this.operatorLogin,

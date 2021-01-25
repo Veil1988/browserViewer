@@ -12,16 +12,15 @@
    * Передаваемая во вне для управления приложением на клиенте
    */
   const browserViewer = {
-    start: () => stores.sessionStore.fetchIdSession(),
-    close: () => stores.sessionStore.closeSession(),
+    start: () => stores.connectionStore.fetchIdSession(),
+    close: () => stores.connectionStore.closeSession(),
   };
   let x: any;
   $: autorun(() => {
-    x = stores.sessionStore.entryMessage;
+    x = stores.connectionStore.entryMessage;
   });
 
   window.browserViewer = browserViewer;
-
 </script>
 
 <!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->

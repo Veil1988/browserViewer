@@ -1,6 +1,6 @@
 declare module '*.svelte' {
-  export { SvelteComponentDev, beforeUpdate } from 'svelte/internal';
-  export const version: string;
+  const value: any;
+  export = value;
 }
 
 declare module '*.ts' {

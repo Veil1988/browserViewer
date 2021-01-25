@@ -1,9 +1,9 @@
-import sessionStore from './sessionStore';
+import connectionStore from './connectionStore';
 
 import { StoreProps } from './interfaces';
 
 const stores: StoreProps = {
-  sessionStore,
+  connectionStore,
 };
 
 export default stores;
