@@ -1,0 +1,45 @@
+.connectionPage-sessionInviteMessage {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+
+    box-shadow: 0 2px 7px rgba(25, 25, 25, 0.25);
+    width: 376px;
+
+    border-radius: 6px;
+    background-color: var(--main-white);
+
+    padding: 16px 24px 16px 16px;
+    
+    box-sizing: border-box;
+    
+    animation: 0.25s linear move;
+    transition: opacity 0.25s;
+    z-index: 99;
+}
+
+.connectionPage-sessionInviteMessage-title {
+    padding-right: 16px;
+
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--main-text-color);
+    font-weight: 500;
+}
+
+.connectionPage-sessionInviteMessage-text {
+    margin-top: 8px;
+    padding-right: 8px;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--main-text-color);
+}
+.connectionPage-sessionInviteMessage-buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    height: 32px;
+
+    margin-top: 22px;
+}

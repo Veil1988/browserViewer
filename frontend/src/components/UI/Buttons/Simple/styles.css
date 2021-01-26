@@ -2,7 +2,7 @@ button {
   border-radius: 32px;
 
   outline: none !important;
-  padding: 14px 20px;
+  padding: 0 20px;
 
   font-weight: 600;
   font-size: var(--title-size);

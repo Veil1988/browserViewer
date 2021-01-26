@@ -1,14 +1,15 @@
 <script context="module">
-  import ConnectionPage from '/user/pages/ConnectionPage/index.svelte';
-
   import { connect } from 'svelte-mobx';
-  import stores from './stores';
+  import stores from '/user/stores/index.ts';
 
-  import './root.css';
+  import SessionInviteMessage from '/components/SessionInviteMessage/index.svelte';
 </script>
 
 <script lang="ts">
   const { autorun } = connect();
+
+  let sessionId: number | null = stores.connectionStore.sessionId;
+  let handleClose: () => void = stores.connectionStore.closeSession;
   /**
    * Передаваемая во вне для управления приложением на клиенте
    */
@@ -16,7 +17,7 @@
     start: () => stores.connectionStore.fetchIdSession(),
     close: () => stores.connectionStore.closeSession(),
   };
-  let sessionId: number | null = null;
+
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
   });
@@ -27,6 +28,6 @@
 <!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->
 <div>
   {#if sessionId}
-    <ConnectionPage />
+    <SessionInviteMessage {sessionId} {handleClose} />
   {/if}
 </div>
