@@ -1,9 +1,12 @@
 # browserViewer
 
-front 
-Svelte + Mobx
-SSE + REST
+front <br />
+Svelte + Mobx <br />
 
-back
-NodeJS + Express
-SSE + REST
+
+back <br />
+NodeJS + Express <br />
+
+Network - SSE + REST <br />
+Pattern - Observer/MVVM/MVC
+
