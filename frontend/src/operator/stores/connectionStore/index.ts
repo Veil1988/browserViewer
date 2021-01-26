@@ -22,7 +22,6 @@ class ConnectionStoreClass {
   // ** создание SSE для получений id сессий в статусе await */
   createServerSubscribeEvents = async () => {
     const url = `${DevelopUrlEnum[TypeUsersEnum.operator]}${ActionOperatorRequestEnum.getSessionList}`;
-    console.log('url', url);
     this.eventSource = new EventSource(url);
 
     sseReciver({

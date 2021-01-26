@@ -1,3 +1,3 @@
-const awaitSessionsList = {};
+const awaitSessionsList = [];
 
 module.exports = awaitSessionsList;

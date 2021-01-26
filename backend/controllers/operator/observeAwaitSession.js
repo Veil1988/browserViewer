@@ -1,18 +1,17 @@
-const awaitSessionsList = require("./../../models/awaitSessionsList");
+let awaitSessionsList = require("./../../models/awaitSessionsList");
 
 const watchObject = require("watch-object");
 
-const observeAwaitSession = async (props) => {
+const observeAwaitSession = (props) => {
   const { cbRes } = props;
+  const { watch, unwatch } = watchObject;
+  const resBodyJson = JSON.stringify(awaitSessionsList);
 
-  cbRes.status(200).write(`data: ${awaitSessionsList}\n\n`);
-  if (awaitSessionsList) {
-    const { watch, unwatch } = watchObject;
-    watch(awaitSessionsList, (newVal, oldVal) => {
-      console.log("---", newVal);
-      cbRes.status(200).write(`data: ${newVal}\n\n`);
-    });
-  }
+  watch(awaitSessionsList, (newVal, oldVal) => {
+    const newResBodyJson = JSON.stringify(awaitSessionsList);
+    cbRes.status(200).write(`data: ${newResBodyJson}\n\n`);
+  });
+  cbRes.status(200).write(`data: ${resBodyJson}\n\n`);
 };
 
 module.exports = observeAwaitSession;

@@ -6,7 +6,10 @@ const closeSession = async (id) => {
     const { status } = sessions[id];
     switch (status) {
       case "await":
-        await delete awaitSessionsList[id];
+        const index = awaitSessionsList.indexOf(id);
+        if (index > -1) {
+          awaitSessionsList.splice(index, 1);
+        }
         await delete sessions[id];
         return "closeOnlyUser";
       case "active":

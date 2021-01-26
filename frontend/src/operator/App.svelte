@@ -18,9 +18,10 @@
 
 <!-- Компонент отвечает за роутинг оператора между страницами -->
 <div>
-  {#if isAuthonticadesOperator === false}
+  {#if !isAuthonticadesOperator}
     <AuthPage />
-  {:else}
+  {/if}
+  {#if isAuthonticadesOperator}
     <ConnectionPage />
   {/if}
 </div>
