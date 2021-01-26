@@ -1,4 +1,5 @@
 const sessions = require("./../../models/sessions");
+const awaitSessionsList = require("./../../models/awaitSessionsList");
 
 const minId = 100000;
 const maxId = 999999;
@@ -29,6 +30,7 @@ const generateSessionId = () => {
   // удачно сгенерил ID сессии
   if (!(generatedId in sessions) && tryCount <= maxTryCount) {
     tryCount = 0;
+    awaitSessionsList.push(generatedId);
     sessions[generatedId] = {
       status: "await",
       operatorId: null,

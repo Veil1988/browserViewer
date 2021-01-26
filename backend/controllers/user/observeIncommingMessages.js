@@ -15,6 +15,10 @@ const observeIncommingMessage = (props) => {
       const resBodyJson = JSON.stringify(resBody);
       cbRes.status(200).write(`data: ${resBodyJson}\n\n`);
     });
+
+    setTimeout(() => {
+      sessions[sessionCode].messageToUser = "pes";
+    }, 5000);
   }
 };
 
