@@ -1,12 +1,12 @@
-## svelte-mobx-example
-[MobX](https://mobx.js.org) connector for [Svelte](https://svelte.dev) example using [svelte-mobx](https://www.npmjs.com/package/svelte-mobx)
-
 ## Get started
 
 ```bash
-cd svelte-mobx-example
-npm install
+npm ci
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000)
+Navigate to [localhost:5000](http://localhost:5000) 
+<br />
+Navigate to User [localhost:5000/user/](http://localhost:5000/user/) 
+<br />
+Navigate to User [localhost:5000/operator/](http://localhost:5000/operator/)
