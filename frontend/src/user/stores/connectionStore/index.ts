@@ -5,7 +5,12 @@ import { sseReciver } from 'utils/sseReciver';
 
 import { ConnectionStoreProps, SessionStatusEnum } from './interfaces';
 import EventSource from 'eventsource';
-import { TypeUsersEnum, ActionUserRequestEnum, MethodEnum, DevelopUrlEnum } from 'utils/requestData/interfaces';
+import {
+  TypeUsersEnum,
+  ActionUserRequestEnum,
+  MethodEnum,
+  DevelopUrlEnum,
+} from 'utils/requestData/interfaces';
 
 class ConnectionStoreClass {
   // ** id сессии для пользователя */
@@ -26,7 +31,7 @@ class ConnectionStoreClass {
       eventSource: observable,
       entryMessage: observable,
       setEntryMessageFromSse: action,
-    })
+    });
   }
 
   // ** запрос id сессии с страници приложения клиента */
@@ -47,7 +52,7 @@ class ConnectionStoreClass {
       // ** TODO ошибка */
     }
     // ** TODO ошибка если ID есть и залупа */
-  }
+  };
 
   // ** закрытие сессии со стороны приложения клиента и самого приложения */
   closeSession = async (): Promise<void> => {
@@ -57,36 +62,38 @@ class ConnectionStoreClass {
         requestType: ActionUserRequestEnum.closeSession,
         method: MethodEnum.post,
         data: {
-          sessionId: this.sessionId
-        }
+          sessionId: this.sessionId,
+        },
       });
       // ** очистка store сессии */
       this.sessionId = null;
       this.status = null;
     }
     // ** TODO ошибка если гавно с ID и его нету */
-  }
+  };
 
   // ** создание SSE для клиента */
   createServerSubscribeEvents = async () => {
-    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${ActionUserRequestEnum.userEventSource}/sessionCode=${this.sessionId}`;
+    const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${
+      ActionUserRequestEnum.userEventSource
+    }/sessionCode=${this.sessionId}`;
     this.eventSource = new EventSource(url);
     sseReciver({
       eventSource: this.eventSource,
       cbMessage: this.setEntryMessageFromSse,
     });
-  }
+  };
 
   // ** закрытие SSE для клиента */
   closeServerEvents = async () => {
     if (this.eventSource) this.eventSource.close();
-  }
+  };
 
   // ** cb переданный в sseReciver для обработки сообщений */
   setEntryMessageFromSse = (msg: any) => {
     // TODO состояние сессии в отдельную переменную data отдельно
     if (this.entryMessage !== msg.data) this.entryMessage = msg.data;
-  }
+  };
 }
 
 const connectionStore: ConnectionStoreProps = new ConnectionStoreClass();

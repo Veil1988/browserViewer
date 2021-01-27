@@ -1,6 +1,6 @@
 <script context="module">
   // TODO разобраться что за
-  // import { beforeUpdate } from 'svelte';
+  import { beforeUpdate } from 'svelte/internal';
   import './styles.css';
 </script>
 
@@ -13,10 +13,9 @@
   let inputClassValid: string =
     value.length > 0 ? 'browserViewer-inputValid' : 'browserViewer-input';
 
-  // beforeUpdate(() => {
-  //   console.log('---', value.length);
-  //   inputClassValid = value.length > 0 ? 'browserViewer-inputValid' : 'browserViewer-input';
-  // });
+  beforeUpdate(() => {
+    inputClassValid = value.length > 0 ? 'browserViewer-inputValid' : 'browserViewer-input';
+  });
 </script>
 
 <input {id} class={inputClassValid} on:input={(event) => onInput(event)} {value} {placeholder} />

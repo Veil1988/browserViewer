@@ -1,45 +1,45 @@
 .browserViewer-connectionPage-sessionInviteMessage {
-    position: fixed;
-    top: 120px;
-    right: 20px;
+  position: fixed;
+  top: 120px;
+  right: 20px;
 
-    box-shadow: 0 2px 7px rgba(25, 25, 25, 0.25);
-    width: 376px;
+  box-shadow: 0 2px 7px rgba(25, 25, 25, 0.25);
+  width: 376px;
 
-    border-radius: 6px;
-    background-color: var(--main-white);
+  border-radius: 6px;
+  background-color: var(--main-white);
 
-    padding: 16px 24px 16px 16px;
-    
-    box-sizing: border-box;
-    
-    animation: 0.25s linear move;
-    transition: opacity 0.25s;
-    z-index: 99;
+  padding: 16px 24px 16px 16px;
+
+  box-sizing: border-box;
+
+  animation: 0.25s linear move;
+  transition: opacity 0.25s;
+  z-index: 99;
 }
 
 .browserViewer-connectionPage-sessionInviteMessage-title {
-    padding-right: 16px;
+  padding-right: 16px;
 
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--browserViewer-main-text-color);
-    font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--browserViewer-main-text-color);
+  font-weight: 500;
 }
 
 .browserViewer-connectionPage-sessionInviteMessage-text {
-    margin-top: 8px;
-    padding-right: 8px;
+  margin-top: 8px;
+  padding-right: 8px;
 
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--browserViewer-main-text-color);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--browserViewer-main-text-color);
 }
 .browserViewer-connectionPage-sessionInviteMessage-buttonWrapper {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 
-    height: 32px;
+  height: 32px;
 
-    margin-top: 22px;
+  margin-top: 22px;
 }

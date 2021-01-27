@@ -1,28 +1,28 @@
-.browserViewer-input {
-    margin-bottom: 20px;
+.browserViewer-input,
+.browserViewer-inputValid {
+  margin-bottom: 20px;
 
-    padding: 14px 0;
+  padding: 14px 0;
 
-    width: 100%;
+  width: 100%;
 
-    border: 1px solid var(--browserViewer-border-white);
-    border-radius: 32px;
+  border: 1px solid var(--browserViewer-border-white);
+  border-radius: 32px;
 
-    background: var(--browserViewer-main-white);
-    outline: none;
+  background: var(--browserViewer-main-white);
+  outline: none;
 
-    text-align: center;
-    color: var(--browserViewer-main-text-color);
-    font-size: var(--browserViewer-title-size);
-    transition: all .25s;
+  text-align: center;
+  color: var(--browserViewer-main-text-color);
+  font-size: var(--browserViewer-title-size);
+  transition: all 0.25s;
 }
 
 .browserViewer-input:focus {
-    border: 1px solid var(--browserViewer-main-blue);
-    background: var(--browserViewer-main-white);
+  border: 1px solid var(--browserViewer-main-blue);
+  background: var(--browserViewer-main-white);
 }
 
 .browserViewer-inputValid {
-    border: 1px solid var(--browserViewer-main-green);
+  border: 1px solid var(--browserViewer-main-green);
 }
-

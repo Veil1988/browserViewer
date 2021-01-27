@@ -1,6 +1,6 @@
 <script context="module">
-  import { beforeUpdate } from 'svelte';
-  // TODO разобраться что за хуйня с index.ts/svelte
+  import { beforeUpdate } from 'svelte/internal';
+
   import Input from '/components/UI/Input/index.svelte';
   import Button from '/components/UI/Buttons/Simple/index.svelte';
 
@@ -32,7 +32,6 @@
 
   /** Функция проверки валидации для кнопки */
   isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;
-
   beforeUpdate(() => {
     console.log('suka');
     isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;

@@ -1,7 +1,6 @@
-
 interface Window {
-    browserViewer: {
-        start: () => void,
-        close: () => void
-    }
+  browserViewer: {
+    start: () => void;
+    close: () => void;
+  };
 }

@@ -1,3 +1,3 @@
 export enum ButtonTypeEnum {
-    buttonGreen = 'buttonGreen'
+  buttonGreen = 'buttonGreen',
 }

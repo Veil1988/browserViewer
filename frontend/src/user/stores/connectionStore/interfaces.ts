@@ -14,10 +14,8 @@ export interface ConnectionStoreProps {
 }
 // ** статусы сессии await|active */
 export enum SessionStatusEnum {
-  await = "await",
-  active = "active"
+  await = 'await',
+  active = 'active',
 }
 
-export interface FetchIdSessionResult {
-
-}
+export interface FetchIdSessionResult {}

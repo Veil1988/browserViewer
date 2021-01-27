@@ -21,25 +21,25 @@
 
 .browserViewer-button:disabled,
 .browserViewer-buttonGreen:disabled {
-    background-color: var(--browserViewer-disabled-white);
+  background-color: var(--browserViewer-disabled-white);
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .browserViewer-buttonGreen {
-    background: var(--browserViewer-main-green);
-  
-    transition: color 0.25s;
+  background: var(--browserViewer-main-green);
+
+  transition: color 0.25s;
 }
 
 .browserViewer-buttonGreen:active {
-    background: var(--browserViewer-click-green);
-  
-    transition: color 0.25s;
+  background: var(--browserViewer-click-green);
+
+  transition: color 0.25s;
 }
 
 .browserViewer-buttonGreen:hover {
-    background: var(--browserViewer-hover-green);
-  
-    transition: color 0.25s;
+  background: var(--browserViewer-hover-green);
+
+  transition: color 0.25s;
 }
