@@ -11,10 +11,11 @@ const closeSession = async (id) => {
         if (index > -1) {
           awaitSessionsList.splice(index, 1);
         }
-        // удаление сессии из обьекта в статусе await
         await delete sessions[id];
         return "closeOnlyUser";
       case "active":
+        // хз корректно или нет
+        await delete sessions[id];
         return "closeUserAndOperator";
       default:
         return "pes suka mraz";
