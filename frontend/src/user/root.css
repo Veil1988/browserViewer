@@ -2,45 +2,45 @@
 :root {
     /* ---- COLORS ---- */
     /* Body */
-    --main-body-color: #f5f7fa;
+    --browserViewer-main-body-color: #f5f7fa;
     /* Green */
-    --main-green: #61c076;
-    --hover-green: #57b76c;
-    --click-green: #4da861;
+    --browserViewer-main-green: #61c076;
+    --browserViewer-hover-green: #57b76c;
+    --browserViewer-click-green: #4da861;
   
     /* Red */
-    --main-red: #ff6969;
-    --hover-red: #fb6060;
-    --click-red: #f55151;
+    --browserViewer-main-red: #ff6969;
+    --browserViewer-hover-red: #fb6060;
+    --browserViewer-click-red: #f55151;
   
     /* White */
-    --main-white: #fff;
-    --hover-white: #f8fafc;
-    --click-white: #eef1f7;
-    --selected-white: #f5f7fa;
-    --border-white: #DAE0EA;
-    --disabled-white: #BDC9DB;
-    --disabled-icon: #4D5B6F;
+    --browserViewer-main-white: #fff;
+    --browserViewer-hover-white: #f8fafc;
+    --browserViewer-click-white: #eef1f7;
+    --browserViewer-selected-white: #f5f7fa;
+    --browserViewer-border-white: #DAE0EA;
+    --browserViewer-disabled-white: #BDC9DB;
+    --browserViewer-disabled-icon: #4D5B6F;
   
     /* Blue */
-    --main-blue: #3c88e0;
+    --browserViewer-main-blue: #3c88e0;
   
     /* Yellow */
-    --main-yellow: #fcb85f;
+    --browserViewer-main-yellow: #fcb85f;
   
     /* ---- TEXT COLOR ---- */
-    --main-text-color: #343E4B;
-    --light-main-text-color: #b3c1d5;
-    --sub-text-color: #758aa8;
-    --green-text-color: #61c076;
-    --white-text-color: #fff;
-    --support-text-color: #3c88E0;
+    --browserViewer-main-text-color: #343E4B;
+    --browserViewer-light-main-text-color: #b3c1d5;
+    --browserViewer-sub-text-color: #758aa8;
+    --browserViewer-green-text-color: #61c076;
+    --browserViewer-white-text-color: #fff;
+    --browserViewer-support-text-color: #3c88E0;
   
     /* ---- FONT SIZE ---- */
-    --sub-title-size: 12px;
-    --default-size: 14px;
-    --title-size: 16px;
-    --big-size: 20px;
-    --giant-size: 24px;
+    --browserViewer-sub-title-size: 12px;
+    --browserViewer-default-size: 14px;
+    --browserViewer-title-size: 16px;
+    --browserViewer-big-size: 20px;
+    --browserViewer-giant-size: 24px;
   }
   

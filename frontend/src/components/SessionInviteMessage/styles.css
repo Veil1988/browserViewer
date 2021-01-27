@@ -1,4 +1,4 @@
-.connectionPage-sessionInviteMessage {
+.browserViewer-connectionPage-sessionInviteMessage {
     position: fixed;
     top: 120px;
     right: 20px;
@@ -18,24 +18,24 @@
     z-index: 99;
 }
 
-.connectionPage-sessionInviteMessage-title {
+.browserViewer-connectionPage-sessionInviteMessage-title {
     padding-right: 16px;
 
     font-size: 16px;
     line-height: 24px;
-    color: var(--main-text-color);
+    color: var(--browserViewer-main-text-color);
     font-weight: 500;
 }
 
-.connectionPage-sessionInviteMessage-text {
+.browserViewer-connectionPage-sessionInviteMessage-text {
     margin-top: 8px;
     padding-right: 8px;
 
     font-size: 14px;
     line-height: 20px;
-    color: var(--main-text-color);
+    color: var(--browserViewer-main-text-color);
 }
-.connectionPage-sessionInviteMessage-buttonWrapper {
+.browserViewer-connectionPage-sessionInviteMessage-buttonWrapper {
     display: flex;
     justify-content: flex-end;
 

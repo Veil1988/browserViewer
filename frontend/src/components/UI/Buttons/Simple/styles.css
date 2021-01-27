@@ -1,13 +1,14 @@
-button {
+.browserViewer-button,
+.browserViewer-buttonGreen {
   border-radius: 32px;
 
   outline: none !important;
   padding: 0 20px;
 
   font-weight: 600;
-  font-size: var(--title-size);
+  font-size: var(--browserViewer-title-size);
   line-height: 20px;
-  color: var(--main-white);
+  color: var(--browserViewer-main-white);
 
   cursor: pointer;
   border-style: none;
@@ -18,27 +19,27 @@ button {
   -webkit-user-select: none;
 }
 
-button:disabled,
-.ButtonGreen:disabled {
-    background-color: var(--disabled-white);
+.browserViewer-button:disabled,
+.browserViewer-buttonGreen:disabled {
+    background-color: var(--browserViewer-disabled-white);
 
     pointer-events: none;
 }
 
-.ButtonGreen {
-    background: var(--main-green);
+.browserViewer-buttonGreen {
+    background: var(--browserViewer-main-green);
   
     transition: color 0.25s;
 }
 
-.ButtonGreen:active {
-    background: var(--click-green);
+.browserViewer-buttonGreen:active {
+    background: var(--browserViewer-click-green);
   
     transition: color 0.25s;
 }
 
-.ButtonGreen:hover {
-    background: var(--hover-green);
+.browserViewer-buttonGreen:hover {
+    background: var(--browserViewer-hover-green);
   
     transition: color 0.25s;
 }

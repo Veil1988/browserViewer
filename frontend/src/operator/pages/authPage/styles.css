@@ -1,10 +1,10 @@
-.authPage {
+.browserViewer-authPage {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.authPage-submitForm {
+.browserViewer-authPage-submitForm {
     display: flex;
     flex-direction: column;
 
@@ -14,18 +14,18 @@
     border-radius: 32px;
     border: 1px solid var(--disabled-white);
 }
-.authPage-submitForm > h1 {
+.browserViewer-authPage-submitForm > h1 {
     width: 100%;
 }
 
-.authPage-inputContainer {
+.browserViewer-authPage-inputContainer {
     display: flex;
     flex-direction: column;
 
     width: 100%;
 }
 
-.authPage-buttonContainer {
+.browserViewer-authPage-buttonContainer {
     display: flex;
     flex-direction: row-reverse;
 

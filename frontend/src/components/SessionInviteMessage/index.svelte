@@ -8,15 +8,15 @@
   export let handleClose: () => void;
 </script>
 
-<div class="connectionPage-sessionInviteMessage">
-  <div class="connectionPage-sessionInviteMessage-title">Ваш ID {sessionId}</div>
-  <div class="connectionPage-sessionInviteMessage-text">Ожидайте оператора</div>
-  <div class="connectionPage-sessionInviteMessage-buttonWrapper">
+<div class="browserViewer-connectionPage-sessionInviteMessage">
+  <div class="browserViewer-connectionPage-sessionInviteMessage-title">Ваш ID {sessionId}</div>
+  <div class="browserViewer-connectionPage-sessionInviteMessage-text">Ожидайте оператора</div>
+  <div class="browserViewer-connectionPage-sessionInviteMessage-buttonWrapper">
     <Button
       handleClick={handleClose}
       value="Завершить показ"
       disabled={false}
-      className="ButtonGreen"
+      className="buttonGreen"
     />
   </div>
 </div>

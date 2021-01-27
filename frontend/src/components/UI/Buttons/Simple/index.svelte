@@ -1,4 +1,5 @@
 <script context="module">
+  import { ButtonTypeEnum } from './interfaces';
   import './styles.css';
 </script>
 
@@ -6,9 +7,9 @@
   export let handleClick: () => void;
   export let value: string;
   export let disabled: boolean;
-  export let className: string;
+  export let className: keyof typeof ButtonTypeEnum | null;
 </script>
 
-<button class={className} on:click={handleClick} {disabled}>
+<button class={`browserViewer-${className || 'button'}`} on:click={handleClick} {disabled}>
   {value}
 </button>

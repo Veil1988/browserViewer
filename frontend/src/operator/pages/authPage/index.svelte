@@ -1,5 +1,5 @@
 <script context="module">
-  import { afterUpdate } from 'svelte';
+  import { beforeUpdate } from 'svelte';
   // TODO разобраться что за хуйня с index.ts/svelte
   import Input from '/components/UI/Input/index.svelte';
   import Button from '/components/UI/Buttons/Simple/index.svelte';
@@ -33,37 +33,36 @@
   /** Функция проверки валидации для кнопки */
   isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;
 
-  afterUpdate(() => {
+  beforeUpdate(() => {
+    console.log('suka');
     isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;
   });
 </script>
 
-<div class="authPage">
-  <div class="authPage-submitForm">
+<div class="browserViewer-authPage">
+  <div class="browserViewer-authPage-submitForm">
     <h1>Auth Page</h1>
-    <div class="authPage-inputContainer">
+    <div class="browserViewer-authPage-inputContainer">
       <Input
-        id="authLogin"
+        id="browserViewer-authLogin"
         onInput={onInputAuth}
         value={operatorLogin}
         placeholder="login"
-        type="login"
       />
       <Input
-        id="authPassword"
+        id="browserViewer-authPassword"
         onInput={onInputAuth}
         value={operatorPassword}
         placeholder="password"
-        type="password"
       />
     </div>
 
-    <div class="authPage-buttonContainer">
+    <div class="browserViewer-authPage-buttonContainer">
       <Button
         handleClick={handleAuth}
         value="Авторизоваться"
         disabled={isDisabled}
-        className="ButtonGreen"
+        className="buttonGreen"
       />
     </div>
   </div>
