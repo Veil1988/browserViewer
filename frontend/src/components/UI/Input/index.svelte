@@ -1,5 +1,4 @@
 <script context="module">
-  // TODO разобраться что за
   import { beforeUpdate } from 'svelte/internal';
   import './styles.css';
 </script>

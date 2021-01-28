@@ -1,4 +1,4 @@
-import { observable, makeAutoObservable } from 'mobx';
+import { observable, makeAutoObservable, action } from 'mobx';
 
 import { requestData } from 'utils/requestData';
 
@@ -21,13 +21,14 @@ class AuthStoreClass {
       operatorLogin: observable,
       operatorPassword: observable,
       isAuthonticadesOperator: observable,
+      onInputAuth: action,
+      handleAuth: action
     });
   }
 
   // ** обработчик изменения логина и пароля */
   // TODO сам знаешь в чем проблема
   onInputAuth = (event: any) => {
-    console.log('suka', event.target.id);
     if (event.target.id === 'browserViewer-authLogin') {
       this.operatorLogin = event.target.value || '';
     }

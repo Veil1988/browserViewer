@@ -1,5 +1,7 @@
 <script context="module">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte/internal';
+
+  import ConnectionUserList from '/components/connectionUserList/index.svelte';
   // TODO разобраться что за хуйня с index.ts/svelte
   import stores from '/operator/stores/index.ts';
   import { connect } from 'svelte-mobx';
@@ -9,18 +11,28 @@
 
 <script lang="ts">
   const { autorun } = connect();
-  // TODO сука ты знаешь что делаешь?
-  let entryMessage: any;
+
+  let idUserSessionAwaitList: [] | number[];
 
   $: autorun(() => {
-    entryMessage = stores.connectionStore.entryMessage;
+    idUserSessionAwaitList = stores.connectionStore.idUserSessionAwaitList;
   });
 
   onMount(() => {
     stores.connectionStore.createServerSubscribeEvents();
   });
+
+  onDestroy(() => {
+    stores.connectionStore.closeServerSubscribeEvents();
+  });
 </script>
 
 <div>
   <h1>Connection Page</h1>
+  {#if idUserSessionAwaitList.length}
+    <ConnectionUserList />
+  {/if}
+  {#if !idUserSessionAwaitList.length}
+    Нету сессий
+  {/if}
 </div>

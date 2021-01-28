@@ -10,7 +10,6 @@
         "experimentalDecorators": true,
         "lib": ["esnext", "dom"],
         "removeComments": true,
-		"alwaysStrict": true,
 		"allowUnreachableCode": false,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
