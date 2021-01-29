@@ -9,6 +9,7 @@ const observeIncommingMessage = require("./../controllers/user/observeIncommingM
 
 // OPERATOR CONTROLLERS
 const observeAwaitSession = require("./../controllers/operator/observeAwaitSession");
+const connectToUser = require("./../controllers/operator/connectToUser");
 
 // USER
 router.get("/user/getSessionId", async (req, res) => {
@@ -43,14 +44,14 @@ router.post("/user/closeSession", async (req, res) => {
   }
 });
 
-router.get("/user/userEventSource/:sessionCode", async (req, res) => {
+router.get("/user/userEventSource/:sessionId", async (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.flushHeaders();
 
-  const sessionCode = req.params.sessionCode.split("=")[1];
-  observeIncommingMessage({ sessionCode, cbRes: res });
+  const sessionId = req.params.sessionId.split("=")[1];
+  observeIncommingMessage({ sessionId, cbRes: res });
 });
 
 // OPERATOR
@@ -58,11 +59,11 @@ router.get("/user/userEventSource/:sessionCode", async (req, res) => {
 router.post("/operator/auth", async (req, res) => {
   const { body: bodyJSON } = req;
   const body = await JSON.parse(bodyJSON);
-  console.log("body", body);
+
   res.status(200).send({ isAuthonticadesOperator: true });
 });
 
-router.get("/operator/getSessionList", async (req, res) => {
+router.get("/operator/getSessionListEventSource", async (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -70,5 +71,22 @@ router.get("/operator/getSessionList", async (req, res) => {
 
   observeAwaitSession({ cbRes: res });
 });
+
+router.get(
+  "/operator/connectToUserEventSource/:sessionId",
+  async (req, res) => {
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.flushHeaders();
+
+    console.log("suka", req.params.sessionId);
+    const sessionId = Number(req.params.sessionId.split("=")[1]);
+
+    if (sessionId) {
+      connectToUser({ sessionId, cbRes: res });
+    }
+  }
+);
 
 module.exports = router;

@@ -1,5 +1,7 @@
 <script context="module">
-  import './assets/connect.svg';
+
+  import connectIcon from './assets/connect.svg';
+
   import './styles.css';
 </script>
 
@@ -14,6 +16,11 @@
     <div class="browserViewer-connectionUserItem-info">
       {id}
     </div>
-    <div class="browserViewer-connectionUserItem-connectButton" on:click={handleConnectToUser(id)}/>
+    <img
+      src={connectIcon}
+      alt=""
+      class="browserViewer-connectionUserItem-connectButton"
+      on:click={handleConnectToUser(id)}
+    />
   </div>
 </div>

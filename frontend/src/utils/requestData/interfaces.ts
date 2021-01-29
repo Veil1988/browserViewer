@@ -23,7 +23,9 @@ export enum ActionOperatorRequestEnum {
   /** Авторизация оператора */
   auth = 'auth',
   /** Получение id сессий в статусе await */
-  getSessionList = 'getSessionList',
+  getSessionListEventSource = 'getSessionListEventSource',
+  /** Подключение к клиенту */
+  connectToUserEventSource = 'connectToUserEventSource',
 }
 
 /** Типы запросов пользователя */

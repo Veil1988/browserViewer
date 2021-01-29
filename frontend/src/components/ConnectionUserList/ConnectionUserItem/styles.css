@@ -1,14 +1,24 @@
-@import url('./assets/connect.svg');
-
 .browserViewer-connectionUserItem {
     box-sizing: border-box;
+    position: relative;
 
     width: 357px;
+    height: 80px;
 
     margin-bottom: 9px;
     padding: 0 16px;
 
     border-radius: 8px;
+}
+
+.browserViewer-connectionUserItem::before {
+    position: absolute;
+    content: ' ';
+    width: 357px;
+    height: 1px;
+    left: 0;
+    top: 83px;
+    background-color: var(--browserViewer-border-white);
 }
 
 .browserViewer-connectionUserItem-wrapper {
@@ -41,7 +51,6 @@
     border-radius: 16px;
 
     background-color: var(--browserViewer-main-green);
-    background-image: url('./assets/connect.svg');
     background-size: cover;
 
     cursor: pointer;

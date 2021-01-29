@@ -76,7 +76,7 @@ class ConnectionStoreClass {
   createServerSubscribeEvents = async () => {
     const url = `${DevelopUrlEnum[TypeUsersEnum.user]}${
       ActionUserRequestEnum.userEventSource
-    }/sessionCode=${this.sessionId}`;
+    }/sessionId=${this.sessionId}`;
     this.eventSource = new EventSource(url);
     sseReciver({
       eventSource: this.eventSource,

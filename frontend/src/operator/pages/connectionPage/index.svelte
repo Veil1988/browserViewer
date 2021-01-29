@@ -20,6 +20,8 @@
 
   onMount(() => {
     stores.connectionStore.createServerSubscribeEvents();
+
+    console.log('111', idUserSessionAwaitList);
   });
 
   onDestroy(() => {
@@ -27,7 +29,7 @@
   });
 </script>
 
-<div>
+<div class="browserViewer-connectionPage">
   <h1>Connection Page</h1>
   {#if idUserSessionAwaitList.length}
     <ConnectionUserList />

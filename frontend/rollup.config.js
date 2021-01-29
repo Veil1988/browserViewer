@@ -1,5 +1,6 @@
 import svelte from 'rollup-plugin-svelte';
 import replace from '@rollup/plugin-replace';
+import image from '@rollup/plugin-image';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -30,6 +31,7 @@ export default () => {
 					useInput: 'entry',
 					extensions: ['*.ts', '*.svelte'],
 				}),
+				image(),
 				css({ 
 					output: 'bundle.css' 
 				}),
@@ -39,8 +41,8 @@ export default () => {
 				resolve({
 					browser: true,
 					main: true,
-					dedupe: ["svelte", "ts", "js"],
-					extensions: [".ts", ".js", ".json", ".svelte"],
+					dedupe: ["svelte", "ts", "js", "svg"],
+					extensions: [".ts", ".js", ".json", ".svelte", ".svg"],
 				}),
 				commonjs(),
 				replace({ "process.env.NODE_ENV": JSON.stringify(dev ? "development" : "production") }),
