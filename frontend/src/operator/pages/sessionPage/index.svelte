@@ -11,15 +11,17 @@
 <script lang="ts">
   const { autorun } = connect();
 
-  // let idUserSessionAwaitList: [] | number[];
+  let sessionId: number;
+  let activateSession: (sessionId: number) => void;
 
   $: autorun(() => {
+    sessionId = stores.connectionStore.sessionId;
+    activateSession = stores.eventStore.activateSession;
     //idUserSessionAwaitList = stores.connectionStore.idUserSessionAwaitList;
   });
 
   onMount(() => {
-    //   stores.connectionStore.createServerSubscribeEvents();
-    //   // console.log('111', idUserSessionAwaitList);
+    activateSession(sessionId);
   });
 </script>
 

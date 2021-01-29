@@ -11,6 +11,7 @@ const observeIncommingMessageUser = require("./../controllers/user/observeIncomm
 // OPERATOR CONTROLLERS
 const observeAwaitSession = require("./../controllers/operator/observeAwaitSession");
 const observeIncommingMessageOperator = require("./../controllers/operator/observeIncommingMessageOperator");
+const setMessageToUser = require("./../controllers/operator/setMessageToUser");
 
 // USER
 router.get("/user/getSessionId", async (req, res) => {
@@ -88,5 +89,11 @@ router.get(
     }
   }
 );
+
+router.post("/operator/sessionMessage", async (req, res) => {
+  const { body: bodyJSON } = req;
+  const body = await JSON.parse(bodyJSON);
+  setMessageToUser({ ...body, cbRes: res });
+});
 
 module.exports = router;

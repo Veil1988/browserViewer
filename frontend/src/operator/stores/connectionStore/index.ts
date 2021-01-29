@@ -48,7 +48,6 @@ class ConnectionStoreClass {
   // ** cb переданный в sseReciver для обработки сообщений */
   // TODO сука ты знаешь что делать
   setEntryIdUserSessionAwaitList = (msg: any) => {
-    console.log('----', msg.data);
     this.idUserSessionAwaitList = JSON.parse(msg.data);
   };
 

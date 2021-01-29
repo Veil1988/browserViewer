@@ -6,6 +6,11 @@ export enum TypeUsersEnum {
   user = 'user',
 }
 
+/** тип изменения статуса на клиенте */
+export enum SetSessionStatus {
+  active = 'active',
+} 
+
 /** URL для запросов из DEV среды */
 export enum DevelopUrlEnum {
   operator = 'http://localhost:9999/operator/',
@@ -22,15 +27,22 @@ export enum RequestTypeEnum {
 }
 
 /** Типы событий для отправки */
-export enum MessageSendingType {
-  /** Визуал рабочего места клиента */
-  userDesktop = 'userDesktop',
+export enum MessageSendingTypeUser {
   /** Клик по рабочему месту с стороны оператора/клиента */
   mouseEvent = 'mouseEvent',
   /** Отправка голосового сообщения с стороный оператора/клиента */
   voiceEvent = 'voiceEvent',
   /** Отправка скрола с стороны только клиента */
   scrollEvent = 'scrollEvent',
+}
+
+export enum MessageSendingTypeOperator {
+  /** Визуал рабочего места клиента */
+  getUserDesktop = 'getUserDesktop',
+  /** Клик по рабочему месту с стороны оператора/клиента */
+  mouseEvent = 'mouseEvent',
+  /** Отправка голосового сообщения с стороный оператора/клиента */
+  voiceEvent = 'voiceEvent',
   /** Отправка статуса сессии необходимо только для оператора */
   activateSession = 'activateSession',
 }
@@ -39,7 +51,7 @@ export enum MessageSendingType {
 export interface MessageSendingProps {
   userType: keyof typeof TypeUsersEnum;
   sessionId: number;
-  messageType: keyof typeof MessageSendingType;
+  messageType: keyof typeof MessageSendingTypeUser | keyof typeof MessageSendingTypeOperator;
   // TODO ну ты и пес ебаный
-  message: any;
+  message?: any;
 }
