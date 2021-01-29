@@ -2,7 +2,7 @@ const sessions = require("./../../models/sessions");
 
 const watchObject = require("watch-object");
 
-const observeIncommingMessage = (props) => {
+const observeIncommingMessageUser = (props) => {
   const { sessionId, cbRes } = props;
   if (sessions[sessionId]) {
     const { watch, unwatch } = watchObject;
@@ -25,4 +25,4 @@ const observeIncommingMessage = (props) => {
   }
 };
 
-module.exports = observeIncommingMessage;
+module.exports = observeIncommingMessageUser;

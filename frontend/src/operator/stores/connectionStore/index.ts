@@ -8,6 +8,7 @@ import {
   ActionOperatorRequestEnum,
   DevelopUrlEnum,
 } from 'utils/requestData/interfaces';
+import { ConnectionStoreProps } from './interfaces';
 
 class ConnectionStoreClass {
   // ** SSE конструктор для получения сессий в статусе await */
@@ -84,6 +85,6 @@ class ConnectionStoreClass {
   }
 }
 
-const connectionStore = new ConnectionStoreClass();
+const connectionStore: ConnectionStoreProps = new ConnectionStoreClass();
 
 export default connectionStore;

@@ -1,5 +1,5 @@
-const sessions = require("./../../models/sessions");
-let awaitSessionsList = require("./../../models/awaitSessionsList");
+const sessions = require("./../models/sessions");
+let awaitSessionsList = require("./../models/awaitSessionsList");
 
 const closeSession = async (id) => {
   if (id in sessions) {
@@ -14,6 +14,7 @@ const closeSession = async (id) => {
         await delete sessions[id];
         return "closeOnlyUser";
       case "active":
+        
         // хз корректно или нет
         await delete sessions[id];
         return "closeUserAndOperator";

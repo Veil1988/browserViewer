@@ -20,8 +20,6 @@
 
   onMount(() => {
     stores.connectionStore.createServerSubscribeEvents();
-
-    console.log('111', idUserSessionAwaitList);
   });
 
   onDestroy(() => {

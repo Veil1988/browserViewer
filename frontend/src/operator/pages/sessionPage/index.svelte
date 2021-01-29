@@ -18,9 +18,9 @@
     });
   
     onMount(() => {
-      stores.connectionStore.createServerSubscribeEvents();
+    //   stores.connectionStore.createServerSubscribeEvents();
   
-      // console.log('111', idUserSessionAwaitList);
+    //   // console.log('111', idUserSessionAwaitList);
     });
   </script>
   

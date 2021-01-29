@@ -2,14 +2,15 @@ const { request } = require("express");
 const express = require("express");
 const router = express.Router();
 
+const closeSession = require("./../controllers/closeSession");
+
 // USER CONTROLLERS
 const generateSessionId = require("./../controllers/user/getSessionId");
-const closeSession = require("./../controllers/user/closeSession");
-const observeIncommingMessage = require("./../controllers/user/observeIncommingMessages");
+const observeIncommingMessageUser = require("./../controllers/user/observeIncommingMessageUser");
 
 // OPERATOR CONTROLLERS
 const observeAwaitSession = require("./../controllers/operator/observeAwaitSession");
-const connectToUser = require("./../controllers/operator/connectToUser");
+const observeIncommingMessageOperator = require("./../controllers/operator/observeIncommingMessageOperator");
 
 // USER
 router.get("/user/getSessionId", async (req, res) => {
@@ -51,7 +52,7 @@ router.get("/user/userEventSource/:sessionId", async (req, res) => {
   res.flushHeaders();
 
   const sessionId = req.params.sessionId.split("=")[1];
-  observeIncommingMessage({ sessionId, cbRes: res });
+  observeIncommingMessageUser({ sessionId, cbRes: res });
 });
 
 // OPERATOR
@@ -80,11 +81,10 @@ router.get(
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.flushHeaders();
 
-    console.log("suka", req.params.sessionId);
-    const sessionId = Number(req.params.sessionId.split("=")[1]);
+    const sessionId = req.params.sessionId.split("=")[1];
 
     if (sessionId) {
-      connectToUser({ sessionId, cbRes: res });
+      observeIncommingMessageOperator({ sessionId, cbRes: res });
     }
   }
 );
