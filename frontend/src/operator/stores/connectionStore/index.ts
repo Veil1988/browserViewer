@@ -28,7 +28,7 @@ class ConnectionStoreClass {
       idUserSessionAwaitList: observable,
       setEntryMessageFromSse: action,
       createServerSubscribeEvents: action,
-      closeServerSubscribeEvents: action
+      closeServerSubscribeEvents: action,
     });
   }
 
@@ -59,19 +59,21 @@ class ConnectionStoreClass {
   };
 
   // ** закрытие и очистка текущего SSE получающего id сессий в стутусе await */
-  closeServerSubscribeEvents = async() => {
+  closeServerSubscribeEvents = async () => {
     if (this.eventSource) {
       await this.eventSource.close();
       this.eventSource = null;
     } else {
       console.log('error from closeServerSubscribeEvents: this.eventSource = null');
     }
-  }
+  };
 
   // ** подключение оператора к пользователю */
   operatorConnectToUser = async (sessionId: number) => {
     this.sessionId = sessionId;
-    const url = `${DevelopUrlEnum[TypeUsersEnum.operator]}${ActionOperatorRequestEnum.connectToUserEventSource}/sessionId=${this.sessionId}`;
+    const url = `${DevelopUrlEnum[TypeUsersEnum.operator]}${
+      ActionOperatorRequestEnum.connectToUserEventSource
+    }/sessionId=${this.sessionId}`;
 
     await this.closeServerSubscribeEvents();
     this.idUserSessionAwaitList = [];
@@ -82,7 +84,7 @@ class ConnectionStoreClass {
       eventSource: this.eventSource,
       cbMessage: this.setEntryMessageFromSse,
     });
-  }
+  };
 }
 
 const connectionStore: ConnectionStoreProps = new ConnectionStoreClass();

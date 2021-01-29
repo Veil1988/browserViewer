@@ -1,5 +1,4 @@
 <script context="module">
-
   import connectIcon from './assets/connect.svg';
 
   import './styles.css';

@@ -1,7 +1,7 @@
 import EventSource from 'eventsource';
 
 export interface ConnectionStoreProps {
-// ** SSE конструктор для получения сессий в статусе await */
+  // ** SSE конструктор для получения сессий в статусе await */
   eventSource: EventSource | null;
   // ** входящее сообщение id сессий в статусе await */
   idUserSessionAwaitList: [] | number[];

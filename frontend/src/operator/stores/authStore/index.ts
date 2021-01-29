@@ -22,7 +22,7 @@ class AuthStoreClass {
       operatorPassword: observable,
       isAuthonticadesOperator: observable,
       onInputAuth: action,
-      handleAuth: action
+      handleAuth: action,
     });
   }
 

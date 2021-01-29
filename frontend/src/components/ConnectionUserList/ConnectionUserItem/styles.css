@@ -1,62 +1,61 @@
 .browserViewer-connectionUserItem {
-    box-sizing: border-box;
-    position: relative;
+  box-sizing: border-box;
+  position: relative;
 
-    width: 357px;
-    height: 80px;
+  width: 357px;
+  height: 80px;
 
-    margin-bottom: 9px;
-    padding: 0 16px;
+  margin-bottom: 9px;
+  padding: 0 16px;
 
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .browserViewer-connectionUserItem::before {
-    position: absolute;
-    content: ' ';
-    width: 357px;
-    height: 1px;
-    left: 0;
-    top: 83px;
-    background-color: var(--browserViewer-border-white);
+  position: absolute;
+  content: ' ';
+  width: 357px;
+  height: 1px;
+  left: 0;
+  top: 83px;
+  background-color: var(--browserViewer-border-white);
 }
 
 .browserViewer-connectionUserItem-wrapper {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    padding: 12px 0 11px;
+  padding: 12px 0 11px;
 }
 
 .browserViewer-connectionUserItem-info {
-    width: 289px;
+  width: 289px;
 
-    color: var(--browserViewer-main-text-color);
-    font-size: var(--browserViewer-title-size);
-    line-height: 24px;
+  color: var(--browserViewer-main-text-color);
+  font-size: var(--browserViewer-title-size);
+  line-height: 24px;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-    user-select: none;
-    white-space: nowrap;
-   
-    cursor: default;
+  user-select: none;
+  white-space: nowrap;
+
+  cursor: default;
 }
 
 .browserViewer-connectionUserItem-connectButton {
-    height: 32px;
-    width: 32px;
+  height: 32px;
+  width: 32px;
 
-    border-radius: 16px;
+  border-radius: 16px;
 
-    background-color: var(--browserViewer-main-green);
-    background-size: cover;
+  background-color: var(--browserViewer-main-green);
+  background-size: cover;
 
-    cursor: pointer;
-
+  cursor: pointer;
 }
 
 .browserViewer-connectionUserItem:hover {
-    background-color: var(--browserViewer-hover-white);
+  background-color: var(--browserViewer-hover-white);
 }
