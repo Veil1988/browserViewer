@@ -46,25 +46,6 @@ class EventStoreClass {
     }
   };
 
-  /** Отправка сообщения пользователю */
-  sendVoiceMessage = (props: any): void => {
-    const { userType, sessionId, data } = props;
-    if (sessionId && userType && data) {
-      messageSending({
-        sessionId,
-        userType,
-        messageType: MessageSendingTypeOperator.voiceEvent,
-        message: {
-          messageToOperator: {
-            messageType: MessageSendingTypeOperator.voiceEvent,
-            data,
-          },
-        },
-      });
-    } else {
-      console.log('has no session id for sendVoiceMessage');
-    }
-  };
 }
 
 const eventStore: EventStoreProps = new EventStoreClass();

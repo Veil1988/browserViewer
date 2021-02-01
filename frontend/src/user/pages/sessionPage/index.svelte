@@ -5,6 +5,8 @@
 
   import { connect } from 'svelte-mobx';
 
+  import { TypeUsersEnum } from './../../../utils/messageSending/interfaces';
+
   import stores from '/user/stores/index.ts';
 </script>
 
@@ -30,5 +32,5 @@
 <!-- страница сессии между клиентом и оператором -->
 <div>
   <h1>Session Page User</h1>
-  <VoiceMessage {entryMessage} {sessionId} userType="user" />
+  <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.user} />
 </div>

@@ -2,7 +2,6 @@
   import ConnectionPage from '/user/pages/ConnectionPage/index.svelte';
   import SessionPage from '/user/pages/SessionPage/index.svelte';
 
-  import { afterUpdate } from 'svelte/internal';
   import { connect } from 'svelte-mobx';
   import stores from './stores';
 

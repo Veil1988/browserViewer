@@ -14,6 +14,7 @@
   export let entryMessage: any;
 
   let hasSupportModue: boolean = 'webkitSpeechRecognition' in window;
+
   let recognition: any = null;
   let classBtn: string = 'browserViewer-voiceMessage';
 
@@ -51,6 +52,7 @@
             },
           },
         });
+        
       };
     }
   };
