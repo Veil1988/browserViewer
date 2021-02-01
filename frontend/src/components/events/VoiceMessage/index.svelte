@@ -39,7 +39,7 @@
       recognition.onend = async () => {
         classBtn = 'browserViewer-voiceMessage';
         recognition.stop();
-        
+
         await messageSending({
           sessionId,
           userType,
@@ -55,17 +55,15 @@
     }
   };
 
-
   // ** подьем кнопки */
   const endRecognition = () => {
     classBtn = 'browserViewer-voiceMessage';
   };
 
   const startReading = () => {
-
     utterance = new SpeechSynthesisUtterance(entryMessage.data);
     speechSynthesis.speak(utterance);
-  }
+  };
 
   onMount(() => {
     if (hasSupportModue) {
@@ -80,7 +78,7 @@
     if (entryMessage?.messageType === MessageSendingTypeUser.voiceEvent) {
       startReading();
     }
-  })
+  });
 </script>
 
 <div>

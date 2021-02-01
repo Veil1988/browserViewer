@@ -17,7 +17,7 @@
 
   $: autorun(() => {
     sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
-  
+
     entryMessage = stores.connectionStore.entryMessage;
     sessionId = stores.connectionStore.sessionId;
   });
@@ -25,7 +25,6 @@
   onMount(() => {
     sendDesktopToOperator(sessionId);
   });
-
 </script>
 
 <!-- страница сессии между клиентом и оператором -->
@@ -33,4 +32,3 @@
   <h1>Session Page User</h1>
   <VoiceMessage {entryMessage} {sessionId} userType="user" />
 </div>
-
