@@ -25,7 +25,7 @@
   window.browserViewer = browserViewer;
 </script>
 
-<!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->
+<!-- страница подключение клиента к оператору -->
 <div>
   {#if sessionId}
     <SessionInviteMessage {sessionId} {handleClose} />

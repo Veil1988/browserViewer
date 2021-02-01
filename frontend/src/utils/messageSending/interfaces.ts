@@ -9,7 +9,7 @@ export enum TypeUsersEnum {
 /** тип изменения статуса на клиенте */
 export enum SetSessionStatus {
   active = 'active',
-} 
+}
 
 /** URL для запросов из DEV среды */
 export enum DevelopUrlEnum {
@@ -34,6 +34,8 @@ export enum MessageSendingTypeUser {
   voiceEvent = 'voiceEvent',
   /** Отправка скрола с стороны только клиента */
   scrollEvent = 'scrollEvent',
+  /** Отправка рабочего стола */
+  userDesktop = 'userDesktop',
 }
 
 export enum MessageSendingTypeOperator {

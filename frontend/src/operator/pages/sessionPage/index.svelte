@@ -1,4 +1,6 @@
 <script context="module">
+  import UserDesktop from '/components/events/UserDesktop/index.svelte';
+
   import { onMount } from 'svelte/internal';
 
   // TODO разобраться что за хуйня с index.ts/svelte
@@ -13,11 +15,13 @@
 
   let sessionId: number;
   let activateSession: (sessionId: number) => void;
+  let entryMessage: any;
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
+    entryMessage = stores.connectionStore.entryMessage;
+
     activateSession = stores.eventStore.activateSession;
-    //idUserSessionAwaitList = stores.connectionStore.idUserSessionAwaitList;
   });
 
   onMount(() => {
@@ -27,4 +31,6 @@
 
 <div class="browserViewer-sessionPage">
   <h1>Session Page</h1>
+  <span>{entryMessage}</span>
+  <UserDesktop {entryMessage} />
 </div>

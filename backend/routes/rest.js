@@ -56,6 +56,12 @@ router.get("/user/userEventSource/:sessionId", async (req, res) => {
   observeIncommingMessageUser({ sessionId, cbRes: res });
 });
 
+router.post("/user/sessionMessage", async (req, res) => {
+  const { body: bodyJSON } = req;
+  const body = await JSON.parse(bodyJSON);
+  setMessageToUser({ ...body, cbRes: res });
+});
+
 // OPERATOR
 // TODO нету базы открывается тапком
 router.post("/operator/auth", async (req, res) => {

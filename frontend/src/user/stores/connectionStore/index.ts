@@ -1,4 +1,5 @@
 import { action, makeAutoObservable, observable } from 'mobx';
+import isEqual from 'lodash.isequal';
 
 import { requestData } from 'utils/requestData';
 import { sseReciver } from 'utils/sseReciver';
@@ -91,8 +92,13 @@ class ConnectionStoreClass {
 
   // ** cb переданный в sseReciver для обработки сообщений */
   setEntryMessageFromSse = (msg: any) => {
-    // TODO состояние сессии в отдельную переменную data отдельно
-    if (this.entryMessage !== msg.data) this.entryMessage = msg.data;
+    const parsedMsg = JSON.parse(msg.data);
+    if (!isEqual(this.entryMessage, parsedMsg.messageToUser)) {
+      this.entryMessage = parsedMsg.messageToUser;
+    }
+    if (this.status !== parsedMsg.status) {
+      this.status = parsedMsg.status;
+    }
   };
 }
 

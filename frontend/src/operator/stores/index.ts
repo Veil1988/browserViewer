@@ -7,7 +7,7 @@ import { StoreProps } from './interfaces';
 const stores: StoreProps = {
   authStore,
   connectionStore,
-  eventStore
+  eventStore,
 };
 
 export default stores;

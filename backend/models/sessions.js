@@ -2,7 +2,7 @@
  * data structure
  * key:sessionId {
  *  operatorId: number | null,
- *  status: 'ACTIVE' | 'AWAIT',
+ *  status: 'active' | 'await',
  *  messageToUser: [{
  *      type:
  *      data:

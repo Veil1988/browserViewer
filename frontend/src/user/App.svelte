@@ -1,8 +1,12 @@
 <script context="module">
   import ConnectionPage from '/user/pages/ConnectionPage/index.svelte';
+  import SessionPage from '/user/pages/SessionPage/index.svelte';
 
+  import { afterUpdate } from 'svelte/internal';
   import { connect } from 'svelte-mobx';
   import stores from './stores';
+
+  import { SessionStatusEnum } from '../user/stores/connectionStore/interfaces';
 
   import './root.css';
 </script>
@@ -16,17 +20,28 @@
     start: () => stores.connectionStore.fetchIdSession(),
     close: () => stores.connectionStore.closeSession(),
   };
-  let sessionId: number | null = null;
-  $: autorun(() => {
-    sessionId = stores.connectionStore.sessionId;
-  });
 
   window.browserViewer = browserViewer;
+
+  let sessionId: number | null = null;
+  let status: keyof typeof SessionStatusEnum | null = null;
+
+  $: autorun(() => {
+    sessionId = stores.connectionStore.sessionId;
+    status = stores.connectionStore.status;
+  });
+
+  afterUpdate(() => {
+    console.log('---', status, stores.connectionStore);
+  });
 </script>
 
 <!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->
 <div>
-  {#if sessionId}
+  {#if sessionId && status === SessionStatusEnum.await}
     <ConnectionPage />
+  {/if}
+  {#if sessionId && status === SessionStatusEnum.active}
+    <SessionPage />
   {/if}
 </div>

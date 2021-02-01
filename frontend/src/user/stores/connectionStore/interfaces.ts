@@ -1,6 +1,8 @@
 export interface ConnectionStoreProps {
   // ** ID сессии */
   sessionId: number | null;
+  // ** статус сессии */
+  status: keyof typeof SessionStatusEnum | null;
   // ** запрос id сессии с страници приложения клиента */
   fetchIdSession: () => void;
   //** закрытие сессии со стороны приложения клиента и самого приложения */
