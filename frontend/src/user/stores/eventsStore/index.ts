@@ -17,8 +17,6 @@ class EventsStoreClass {
     if (sessionId) {
       const data = await screenUserDesktop();
 
-      console.log('-=---', data);
-
       messageSending({
         sessionId,
         userType: TypeUsersEnum.user,

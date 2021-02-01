@@ -1,7 +1,9 @@
 <script context="module">
   import UserDesktop from '/components/events/UserDesktop/index.svelte';
+  import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
 
   import { onMount } from 'svelte/internal';
+  import { TypeUsersEnum } from './../../../utils/messageSending/interfaces';
 
   // TODO разобраться что за хуйня с index.ts/svelte
   import stores from '/operator/stores/index.ts';
@@ -30,7 +32,7 @@
 </script>
 
 <div class="browserViewer-sessionPage">
-  <h1>Session Page</h1>
-  <span>{entryMessage}</span>
+  <h1>Session Page Operator</h1>
   <UserDesktop {entryMessage} />
+  <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.operator} />
 </div>

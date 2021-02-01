@@ -30,10 +30,6 @@
     sessionId = stores.connectionStore.sessionId;
     status = stores.connectionStore.status;
   });
-
-  afterUpdate(() => {
-    console.log('---', status, stores.connectionStore);
-  });
 </script>
 
 <!-- Компонент отвечает за роутинг клиента и стартовую инициализацию компонентов -->

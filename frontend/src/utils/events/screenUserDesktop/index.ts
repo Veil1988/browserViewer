@@ -17,5 +17,5 @@ export const screenUserDesktop = (): any => {
         desktopScollLeft,
       },
     };
-  })
+  });
 };

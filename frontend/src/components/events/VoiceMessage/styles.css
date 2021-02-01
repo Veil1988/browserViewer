@@ -1,0 +1,7 @@
+.browserViewer-voiceMessage {
+  border: 1px solid red;
+}
+
+.browserViewer-voiceMessage-recording {
+  border: 1px solid green;
+}

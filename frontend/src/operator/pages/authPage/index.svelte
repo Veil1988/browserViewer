@@ -33,7 +33,6 @@
   /** Функция проверки валидации для кнопки */
   isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;
   beforeUpdate(() => {
-    console.log('suka');
     isDisabled = !isLoading && operatorLogin.length && operatorPassword.length ? false : true;
   });
 </script>

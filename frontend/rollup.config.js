@@ -18,6 +18,7 @@ export default () => {
 	const configuration = pack => {
 		return {
 			input: `src/${pack}/index.ts`,
+			
 			output: {
 				name: "app",
 				format: "iife",
@@ -31,6 +32,7 @@ export default () => {
 					useInput: 'entry',
 					extensions: ['*.ts', '*.svelte'],
 				}),
+
 				image(),
 				css({ 
 					output: 'bundle.css' 
