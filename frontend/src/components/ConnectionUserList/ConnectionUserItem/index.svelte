@@ -7,7 +7,7 @@
 <script lang="ts">
   export let id: number;
   // TODO сука не прикидывайся пнем это же хуйня а не типизация
-  export let handleConnectToUser: (id: number) => any;
+  export let handleConnectToUser: (id: number) => svelte.JSX.EventHandler<MouseEvent, HTMLImageElement>;
 </script>
 
 <div class="browserViewer-connectionUserItem">

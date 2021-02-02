@@ -3,22 +3,22 @@
 
   import { messageSending } from '../../../utils/messageSending';
 
-  import { MessageSendingTypeUser } from '../../../utils/messageSending/interfaces';
+  import { MessageSendingTypeUser, TypeUsersEnum } from '../../../utils/messageSending/interfaces';
 
   import './styles.css';
 </script>
 
 <script lang="ts">
-  export let sessionId: any;
-  export let userType: any;
+  export let sessionId: number;
+  export let userType: keyof typeof TypeUsersEnum;
   export let entryMessage: any;
 
   let hasSupportModue: boolean = 'webkitSpeechRecognition' in window;
-
+  // ** нету типизации для webkitSpeechRecognition - поэтому any как не прискорбно */
   let recognition: any = null;
   let classBtn: string = 'browserViewer-voiceMessage';
 
-  let utterance: any = null;
+  let utterance: SpeechSynthesisUtterance | null = null;
 
   // ** запуск распознования речи */
   const startRecognition = () => {
