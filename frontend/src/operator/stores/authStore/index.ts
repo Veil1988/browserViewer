@@ -41,7 +41,7 @@ class AuthStoreClass {
   handleAuth = async () => {
     this.isLoading = true;
 
-    const result = await requestData({
+    const result: any = await requestData({
       userType: TypeUsersEnum.operator,
       requestType: ActionOperatorRequestEnum.auth,
       method: MethodEnum.post,

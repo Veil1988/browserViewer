@@ -1,8 +1,6 @@
 import html2canvas from 'html2canvas';
 
-import { ScreenUserDesktopProps } from './interfaces';
-
-export const screenUserDesktop = (): Promise<ScreenUserDesktopProps> => {
+export const screenUserDesktop = (): Promise<any> => {
   const desktopWidth = document.body.offsetWidth;
   const desktopHeight = document.body.offsetHeight;
   const desktopScrollTop = window.pageYOffset;

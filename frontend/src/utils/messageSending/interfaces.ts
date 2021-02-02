@@ -54,7 +54,7 @@ export interface MessageSendingProps {
   userType: keyof typeof TypeUsersEnum;
   sessionId: number;
   messageType: keyof typeof MessageSendingTypeUser | keyof typeof MessageSendingTypeOperator;
-  message?: MessageProps;
+  message?: EmptyMessage | DesktopMessage | VoiceMessage | {status: SetSessionStatus.active};
 }
 
 export interface EmptyMessage {
@@ -62,7 +62,7 @@ export interface EmptyMessage {
 }
 
 export interface StatusMessage {
-  status: keyof typeof SetSessionStatus;
+  status: SetSessionStatus.active;
 }
 
 export interface DesktopMessage {
@@ -88,5 +88,5 @@ export interface VoiceMessage {
 }
 
 export interface MessageProps {
-  message: EmptyMessage | StatusMessage | DesktopMessage | VoiceMessage;
+  message: EmptyMessage | DesktopMessage | VoiceMessage | StatusMessage;
 }

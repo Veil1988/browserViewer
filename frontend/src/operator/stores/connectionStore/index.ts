@@ -52,13 +52,11 @@ class ConnectionStoreClass {
   };
 
   // ** cb переданный в sseReciver для обработки сообщений */
-  // TODO сука ты знаешь что делать
   setEntryIdUserSessionAwaitList = (msg: any) => {
     this.idUserSessionAwaitList = JSON.parse(msg.data);
   };
 
   // ** cb переданный в sseReciver для обработки сообщений */
-  // TODO сука ты знаешь что делать
   setEntryMessageFromSse = (msg: any) => {
     const parsedMsg = JSON.parse(msg.data);
     if (!isEqual(this.entryMessage, parsedMsg.messageToOperator)) {

@@ -1,3 +1,5 @@
+import { MessageProps } from './../../../utils/messageSending/interfaces';
+
 export interface ConnectionStoreProps {
   // ** ID сессии */
   sessionId: number | null;
@@ -8,11 +10,9 @@ export interface ConnectionStoreProps {
   //** закрытие сессии со стороны приложения клиента и самого приложения */
   closeSession: () => void;
   //** SSE */
-  // TODO убрать any нахуй
-  eventSource: any;
+  eventSource: EventSource | null;
   // ** Входящее сообщение от оператора */
-  // TODO убрать any нахуй
-  entryMessage: any;
+  entryMessage: MessageProps | {};
 }
 // ** статусы сессии await|active */
 export enum SessionStatusEnum {

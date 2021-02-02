@@ -13,7 +13,6 @@ export const messageSending = async (props: MessageSendingProps): Promise<any> =
   try {
     // ** сборка URL из enum ов тип пользователя и среды разработки */
     const url = `${DevelopUrlEnum[TypeUsersEnum[userType]]}${RequestTypeEnum.sessionMessage}`;
-    console.log('---', message);
     const body = JSON.stringify({
       sessionId,
       messageType,

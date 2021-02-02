@@ -5,7 +5,7 @@
 
   import { connect } from 'svelte-mobx';
 
-  import { TypeUsersEnum } from './../../../utils/messageSending/interfaces';
+  import { TypeUsersEnum, MessageProps } from './../../../utils/messageSending/interfaces';
 
   import stores from '/user/stores/index.ts';
 </script>
@@ -15,7 +15,7 @@
 
   let sendDesktopToOperator: (sessionId: number) => void;
   let sessionId: number;
-  let entryMessage: any;
+  let entryMessage: MessageProps | {} = {};
 
   $: autorun(() => {
     sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;

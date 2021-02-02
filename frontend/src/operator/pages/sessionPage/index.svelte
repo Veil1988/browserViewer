@@ -17,7 +17,7 @@
 
   let sessionId: number;
   let activateSession: (sessionId: number) => void;
-  let entryMessage: MessageProps;
+  let entryMessage: MessageProps | {} = {};
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;

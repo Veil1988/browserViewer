@@ -2,7 +2,7 @@ import { RequestDataProps, DevelopUrlEnum, TypeUsersEnum } from './interfaces';
 import { header } from './constants';
 
 // ** Шаблон запросов */
-export const requestData = async (props: RequestDataProps): Promise<any> => {
+export const requestData = async (props: RequestDataProps): Promise<void> => {
   const { userType, requestType, method, data = null } = props;
   try {
     // ** сборка URL из enum ов тип пользователя и среды разработки */

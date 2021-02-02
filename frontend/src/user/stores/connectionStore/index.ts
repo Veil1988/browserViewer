@@ -20,10 +20,8 @@ class ConnectionStoreClass {
   // ** статус сессии await|active|null */
   status: keyof typeof SessionStatusEnum | null = null;
   // ** SSE конструктор */
-  eventSource: EventSource | null = null;
-
+  eventSource: any = null;
   // ** входящее сообщени */
-  // TODO убрать any нахуй
   entryMessage: MessageProps | {} = {};
 
   constructor() {
@@ -37,9 +35,9 @@ class ConnectionStoreClass {
   }
 
   // ** запрос id сессии с страници приложения клиента */
-  fetchIdSession = async (): Promise<void> => {
+  fetchIdSession = async (): Promise<any> => {
     if (this.sessionId === null) {
-      const result = await requestData({
+      const result: any = await requestData({
         userType: TypeUsersEnum.user,
         requestType: ActionUserRequestEnum.getSessionId,
         method: MethodEnum.get,
