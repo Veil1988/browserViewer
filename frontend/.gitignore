@@ -1,11 +1,9 @@
 /node_modules/
-/public/**/index.js
-/public/**/index.css
-/public/**/index.js.map
-/public/user/index.js
-/public/user/index.js.map
-/public/bundle.css
-./frontend/public/user/index.js
-./frontend/public/user/index.js.map
+frontend/public/user/index.js.map
+frontend/public/user/index.js
+frontend/public/operator/index.js.map
+frontend/public/operator/index.js
+frontend/public/operator/bundle.css
+frontend/public/user/bundle.css
 .vscode
 .DS_Store
