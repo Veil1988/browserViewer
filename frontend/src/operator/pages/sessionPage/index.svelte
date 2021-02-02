@@ -3,7 +3,7 @@
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
 
   import { onMount } from 'svelte/internal';
-  import { TypeUsersEnum } from './../../../utils/messageSending/interfaces';
+  import { TypeUsersEnum, MessageProps } from './../../../utils/messageSending/interfaces';
 
   // TODO разобраться что за хуйня с index.ts/svelte
   import stores from '/operator/stores/index.ts';
@@ -17,7 +17,7 @@
 
   let sessionId: number;
   let activateSession: (sessionId: number) => void;
-  let entryMessage: any;
+  let entryMessage: MessageProps;
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;

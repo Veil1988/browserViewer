@@ -12,6 +12,7 @@ import {
   MethodEnum,
   DevelopUrlEnum,
 } from 'utils/requestData/interfaces';
+import { MessageProps } from './../../../utils/messageSending/interfaces';
 
 class ConnectionStoreClass {
   // ** id сессии для пользователя */
@@ -23,7 +24,7 @@ class ConnectionStoreClass {
 
   // ** входящее сообщени */
   // TODO убрать any нахуй
-  entryMessage: any = null;
+  entryMessage: MessageProps | {} = {};
 
   constructor() {
     makeAutoObservable(this, {

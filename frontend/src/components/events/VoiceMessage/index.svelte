@@ -3,7 +3,11 @@
 
   import { messageSending } from '../../../utils/messageSending';
 
-  import { MessageSendingTypeUser, TypeUsersEnum } from '../../../utils/messageSending/interfaces';
+  import {
+    MessageSendingTypeUser,
+    TypeUsersEnum,
+    VoiceMessage,
+  } from '../../../utils/messageSending/interfaces';
 
   import './styles.css';
 </script>
@@ -11,7 +15,7 @@
 <script lang="ts">
   export let sessionId: number;
   export let userType: keyof typeof TypeUsersEnum;
-  export let entryMessage: any;
+  export let entryMessage: VoiceMessage['messageToUser' | 'messageToOperator'];
 
   let hasSupportModue: boolean = 'webkitSpeechRecognition' in window;
   // ** нету типизации для webkitSpeechRecognition - поэтому any как не прискорбно */

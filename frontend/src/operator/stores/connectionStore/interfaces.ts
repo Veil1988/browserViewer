@@ -1,4 +1,5 @@
 import EventSource from 'eventsource';
+import { MessageProps } from './../../../utils/messageSending/interfaces';
 
 export interface ConnectionStoreProps {
   // ** статус сессии */
@@ -10,8 +11,7 @@ export interface ConnectionStoreProps {
   // ** id сессии для оператора */
   sessionId: number | null;
   // ** входящее сообщение message от пользователя */
-  // TODO сука валенок
-  entryMessage: any;
+  entryMessage: MessageProps | {};
 }
 
 // ** статусы сессии await|active */

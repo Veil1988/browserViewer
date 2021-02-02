@@ -54,8 +54,7 @@ export interface MessageSendingProps {
   userType: keyof typeof TypeUsersEnum;
   sessionId: number;
   messageType: keyof typeof MessageSendingTypeUser | keyof typeof MessageSendingTypeOperator;
-  // TODO ну ты и пес ебаный
-  message?: EmptyMessage | StatusMessage | DesktopMessage | VoiceMessage;
+  message?: MessageProps;
 }
 
 export interface EmptyMessage {
@@ -86,4 +85,8 @@ export interface VoiceMessage {
     messageType: MessageSendingTypeUser.voiceEvent;
     data: string;
   };
+}
+
+export interface MessageProps {
+  message: EmptyMessage | StatusMessage | DesktopMessage | VoiceMessage;
 }

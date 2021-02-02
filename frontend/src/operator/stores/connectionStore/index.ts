@@ -9,6 +9,8 @@ import {
   ActionOperatorRequestEnum,
   DevelopUrlEnum,
 } from 'utils/requestData/interfaces';
+import { MessageProps } from './../../../utils/messageSending/interfaces';
+
 import { ConnectionStoreProps, SessionStatusEnum } from './interfaces';
 
 class ConnectionStoreClass {
@@ -21,8 +23,7 @@ class ConnectionStoreClass {
   // ** id сессии для оператора */
   sessionId: number | null = null;
   // ** входящее сообщение message от пользователя */
-  // TODO сука валенок
-  entryMessage: any = {};
+  entryMessage: MessageProps | {} = {};
 
   constructor() {
     makeAutoObservable(this, {

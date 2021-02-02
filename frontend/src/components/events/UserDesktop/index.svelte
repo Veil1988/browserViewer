@@ -1,12 +1,15 @@
 <script context="module">
   import { onMount, afterUpdate } from 'svelte/internal';
-  import { MessageSendingTypeUser } from './../../../utils/messageSending/interfaces';
+  import {
+    MessageSendingTypeUser,
+    DesktopMessage,
+  } from './../../../utils/messageSending/interfaces';
   import { UserDesktopDataProps } from './interfaces';
   import './styles.css';
 </script>
 
 <script lang="ts">
-  export let entryMessage: any;
+  export let entryMessage: DesktopMessage['messageToOperator'];
 
   let canvas: HTMLCanvasElement | null = null;
   let imgScreen: string = '';
