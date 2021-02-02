@@ -55,5 +55,30 @@ export interface MessageSendingProps {
   sessionId: number;
   messageType: keyof typeof MessageSendingTypeUser | keyof typeof MessageSendingTypeOperator;
   // TODO ну ты и пес ебаный
-  message?: any;
+  message?: EmptyMessage | StatusMessage | DesktopMessage;
 }
+
+export interface EmptyMessage {
+  message: {};
+}
+
+export interface StatusMessage {
+  status: keyof typeof SetSessionStatus;
+}
+
+export interface DesktopMessage {
+  messageToOperator: {
+    data: {
+      imgScreen: string;
+      userDesktopData: {
+        desktopHeight: number;
+        desktopScollLeft: number;
+        desktopScrollTop: number;
+        desktopWidth: number;
+      };
+      messageType: MessageSendingTypeUser.userDesktop;
+    };
+  };
+}
+
+export interface VoiceMessage {}
