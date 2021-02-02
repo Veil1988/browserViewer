@@ -10,7 +10,7 @@
 <script lang="ts">
   const { autorun } = connect();
   let idUserSessionAwaitList: [] | number[];
-  let handleConnectToUser: (id: number) => svelte.JSX.EventHandler<MouseEvent, HTMLImageElement>;
+  let handleConnectToUser: (id: number) => svelte.JSX.EventHandler;
   $: autorun(() => {
     idUserSessionAwaitList = stores.connectionStore.idUserSessionAwaitList;
     handleConnectToUser = stores.connectionStore.operatorConnectToUser;

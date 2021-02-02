@@ -28,7 +28,7 @@ class AuthStoreClass {
 
   // ** обработчик изменения логина и пароля */
   // TODO сам знаешь в чем проблема
-  onInputAuth = (event: any) => {
+  onInputAuth = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === 'browserViewer-authLogin') {
       this.operatorLogin = event.target.value || '';
     }

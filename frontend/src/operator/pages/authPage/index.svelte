@@ -14,7 +14,7 @@
   const { autorun } = connect();
 
   // TODO сам знаешь что делать
-  let onInputAuth: (event: any) => void;
+  let onInputAuth: (event: svelte.JSX.EventHandler) => void;
   let handleAuth: () => void;
   let operatorLogin: string = '';
   let operatorPassword: string = '';
