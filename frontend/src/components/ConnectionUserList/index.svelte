@@ -10,7 +10,7 @@
 <script lang="ts">
   const { autorun } = connect();
   let idUserSessionAwaitList: [] | number[];
-  let handleConnectToUser: (id: number) => any;
+  let handleConnectToUser: (id: number) => Promise<void>;
   $: autorun(() => {
     idUserSessionAwaitList = stores.connectionStore.idUserSessionAwaitList;
     handleConnectToUser = stores.connectionStore.operatorConnectToUser;

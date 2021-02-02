@@ -45,7 +45,6 @@ class EventStoreClass {
       console.log('has no session id for getUserDesktop');
     }
   };
-
 }
 
 const eventStore: EventStoreProps = new EventStoreClass();
