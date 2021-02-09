@@ -64,7 +64,16 @@ class ConnectionStoreClass {
       this.entryMessage = parsedMsg.messageToOperator;
     }
     if (this.status !== parsedMsg.status) {
-      this.status = parsedMsg.status;
+      // ** обработчик на закрытие сессии со стороны клиента */
+      if (parsedMsg.status === SessionStatusEnum.close) {
+        this.closeServerSubscribeEvents();
+        this.entryMessage = {};
+        this.eventSource = null;
+        this.status = null;
+        this.sessionId = null;
+      } else {
+        this.status = parsedMsg.status;
+      }
     }
   };
 
@@ -89,6 +98,7 @@ class ConnectionStoreClass {
         },
       });
       // ** очистка store сессии */
+      await sessionStorage.removeItem('browsingWiever');
       this.sessionId = null;
       this.status = null;
     }

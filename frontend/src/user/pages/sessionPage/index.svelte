@@ -17,12 +17,15 @@
   let sendDesktopToOperator: (sessionId: number) => void;
   let sessionId: number;
   let entryMessage: MessageProps | {} = {};
+  let handleCloseActiveSession: () => void;
 
   $: autorun(() => {
     sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
 
     entryMessage = stores.connectionStore.entryMessage;
     sessionId = stores.connectionStore.sessionId;
+
+    handleCloseActiveSession = stores.connectionStore.closeSession;
   });
 
   onMount(() => {
@@ -34,5 +37,5 @@
 <div>
   <h1>Session Page User</h1>
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.user} />
-  <CloseActiveSession />
+  <CloseActiveSession {handleCloseActiveSession} />
 </div>

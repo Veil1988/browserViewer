@@ -18,4 +18,5 @@ export interface ConnectionStoreProps {
 export enum SessionStatusEnum {
   await = 'await',
   active = 'active',
+  close = 'close'
 }

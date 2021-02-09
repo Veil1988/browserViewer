@@ -20,7 +20,9 @@
   });
 
   onMount(() => {
-    sessionStorage.setItem('browsingWiever', `${sessionId}`);
+    if (sessionId) {
+      sessionStorage.setItem('browsingWiever', `${sessionId}`);
+    }
   });
 </script>
 

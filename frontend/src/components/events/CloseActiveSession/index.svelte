@@ -6,6 +6,6 @@
   export let handleCloseActiveSession: () => void;
 </script>
 
-<button class="browserViewer-closeActiveSession" on:click={handleCloseActiveSession}>
+<button class="browserViewer-closeActiveSession" on:click={() => handleCloseActiveSession()}>
   Завершить сессию
 </button>

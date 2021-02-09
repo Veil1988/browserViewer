@@ -1,43 +1,32 @@
 const sessions = require("./../models/sessions");
 let awaitSessionsList = require("./../models/awaitSessionsList");
-const e = require("express");
 
-const closeSession = async (id, userType) => {
+const closeSession = async (id) => {
   if (id in sessions) {
     const { status } = sessions[id];
     const index = awaitSessionsList.indexOf(id);
-    if (userType === "user") {
-      switch (status) {
-        case "await":
-          // удаление из массива активных сессий в статусе await
+    console.log("status", status, sessions[id]);
+    // if (userType === "user") {
+    switch (status) {
+      case "await":
+        // удаление из массива активных сессий в статусе await
+        if (index > -1) {
+          awaitSessionsList.splice(index, 1);
+        }
+        await delete sessions[id];
+        return "closeOnlyUser";
+      case "active":
+        sessions[id].status = "close";
+        setTimeout(() => {
+          if (index > -1) {
+            awaitSessionsList.splice(index, 1);
+          }
+          delete sessions[id];
+        }, 1000);
 
-          if (index > -1) {
-            awaitSessionsList.splice(index, 1);
-          }
-          await delete sessions[id];
-          return "closeOnlyUser";
-        case "active":
-          // хз корректно или нет
-          if (index > -1) {
-            awaitSessionsList.splice(index, 1);
-          }
-          await delete sessions[id];
-          return "closeUserAndOperator";
-        default:
-          return "pes suka mraz";
-      }
-    } else {
-      switch (status) {
-        case "active":
-          // хз корректно или нет
-          if (index > -1) {
-            awaitSessionsList.splice(index, 1);
-          }
-          await delete sessions[id];
-          return "closeUserAndOperator";
-        default:
-          return "pes suka mraz";
-      }
+        return "closeUserAndOperator";
+      default:
+        return "pes suka mraz";
     }
   } else {
     return false;

@@ -28,7 +28,7 @@ router.post("/user/closeSession", async (req, res) => {
   const body = await JSON.parse(bodyJSON);
   if ("sessionId" in body && body.sessionId) {
     const { sessionId } = body;
-    const status = await closeSession(sessionId, "user");
+    const status = await closeSession(sessionId);
     switch (status) {
       case "closeOnlyUser":
         res.status(200).send({ message: "Session closed" });
@@ -100,11 +100,8 @@ router.post("/operator/closeSession", async (req, res) => {
   const body = await JSON.parse(bodyJSON);
   if ("sessionId" in body && body.sessionId) {
     const { sessionId } = body;
-    const status = await closeSession(sessionId, "operator");
+    const status = await closeSession(sessionId);
     switch (status) {
-      case "closeOnlyUser":
-        res.status(200).send({ message: "Session closed" });
-        break;
       case "closeUserAndOperator":
         res.status(200).send({ message: "Session closed" });
         break;

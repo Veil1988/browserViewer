@@ -68,6 +68,7 @@ class ConnectionStoreClass {
       // ** очистка store сессии */
       this.sessionId = null;
       this.status = null;
+      return
     }
 
     // ** закрытие прошлой сессии после перезагрузки */
