@@ -19,16 +19,21 @@
   let sessionId: number;
   let activateSession: (sessionId: number) => void;
   let entryMessage: MessageProps | {} = {};
+  let handleCloseActiveSession: () => void;
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
     entryMessage = stores.connectionStore.entryMessage;
-
     activateSession = stores.eventStore.activateSession;
+    handleCloseActiveSession = stores.connectionStore.closeSession;
   });
 
   onMount(() => {
-    activateSession(sessionId);
+    if (sessionId) {
+      activateSession(sessionId);
+
+      sessionStorage.setItem('browsingWiever', `${sessionId}`);
+    }
   });
 </script>
 
@@ -36,5 +41,5 @@
   <h1>Session Page Operator</h1>
   <UserDesktop {entryMessage} />
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.operator} />
-  <CloseActiveSession />
+  <CloseActiveSession {handleCloseActiveSession} />
 </div>

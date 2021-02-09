@@ -21,10 +21,8 @@
 
   $: autorun(() => {
     sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
-
     entryMessage = stores.connectionStore.entryMessage;
     sessionId = stores.connectionStore.sessionId;
-
     handleCloseActiveSession = stores.connectionStore.closeSession;
   });
 

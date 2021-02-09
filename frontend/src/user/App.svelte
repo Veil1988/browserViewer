@@ -32,9 +32,8 @@
   });
 
   onMount(() => {
-    const isPreviusActiveStatus = sessionStorage.getItem('browsingWiever');
+    const isPreviusActiveStatus: string | null = sessionStorage.getItem('browsingWiever');
     if (isPreviusActiveStatus) {
-      console.log('---', isPreviusActiveStatus, status);
       stores.connectionStore.closeSession();
     }
   });

@@ -72,8 +72,8 @@ class ConnectionStoreClass {
     }
 
     // ** закрытие прошлой сессии после перезагрузки */
-    const prevSessionId = sessionStorage.getItem('browsingWiever');
-    if (!this.sessionId && prevSessionId) {
+    const prevSessionId: string | null = sessionStorage.getItem('browsingWiever');
+    if (!this.sessionId && prevSessionId?.length) {
       await requestData({
         userType: TypeUsersEnum.user,
         requestType: ActionUserRequestEnum.closeSession,

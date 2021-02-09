@@ -20,6 +20,11 @@
 
   onMount(() => {
     stores.connectionStore.createServerSubscribeEvents();
+
+    const isPreviusActiveStatus: string | null = sessionStorage.getItem('browsingWiever');
+    if (isPreviusActiveStatus) {
+      stores.connectionStore.closeSession();
+    }
   });
 
   onDestroy(() => {

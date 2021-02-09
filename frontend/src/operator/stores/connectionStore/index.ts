@@ -101,12 +101,12 @@ class ConnectionStoreClass {
       await sessionStorage.removeItem('browsingWiever');
       this.sessionId = null;
       this.status = null;
+      return
     }
 
     // ** закрытие прошлой сессии после перезагрузки */
-    // TODO нету подобного на операторе
-    const prevSessionId = sessionStorage.getItem('browsingWiever');
-    if (!this.sessionId && prevSessionId) {
+    const prevSessionId: string | null = sessionStorage.getItem('browsingWiever');
+    if (!this.sessionId && prevSessionId?.length) {
       await requestData({
         userType: TypeUsersEnum.operator,
         requestType: ActionOperatorRequestEnum.closeSession,
