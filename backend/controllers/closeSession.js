@@ -14,7 +14,6 @@ const closeSession = async (id) => {
         await delete sessions[id];
         return "closeOnlyUser";
       case "active":
-        
         // хз корректно или нет
         await delete sessions[id];
         return "closeUserAndOperator";

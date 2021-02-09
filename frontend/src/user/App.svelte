@@ -1,4 +1,5 @@
 <script context="module">
+  import { onMount } from 'svelte/internal';
   import ConnectionPage from '/user/pages/ConnectionPage/index.svelte';
   import SessionPage from '/user/pages/SessionPage/index.svelte';
 
@@ -28,6 +29,14 @@
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
     status = stores.connectionStore.status;
+  });
+
+  onMount(() => {
+    const isPreviusActiveStatus = sessionStorage.getItem('browsingWiever');
+    if (isPreviusActiveStatus) {
+      
+      stores.connectionStore.closeSession();
+    }
   });
 </script>
 

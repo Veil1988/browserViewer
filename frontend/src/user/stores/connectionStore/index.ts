@@ -69,6 +69,21 @@ class ConnectionStoreClass {
       this.sessionId = null;
       this.status = null;
     }
+
+    // ** закрытие прошлой сессии после перезагрузки */
+    const prevSessionId = sessionStorage.getItem('browsingWiever');
+    if (!this.sessionId && prevSessionId) {
+      await requestData({
+        userType: TypeUsersEnum.user,
+        requestType: ActionUserRequestEnum.closeSession,
+        method: MethodEnum.post,
+        data: {
+          sessionId: Number(prevSessionId),
+        },
+      });
+      // ** Очистка sessionStorage */
+      sessionStorage.removeItem('browsingWiever');
+    }
     // ** TODO ошибка если гавно с ID и его нету */
   };
 

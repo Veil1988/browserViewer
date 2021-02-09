@@ -1,4 +1,5 @@
 <script context="module">
+  import { onMount } from 'svelte/internal';
   import { connect } from 'svelte-mobx';
   import stores from '/user/stores/index.ts';
 
@@ -13,16 +14,14 @@
   /**
    * Передаваемая во вне для управления приложением на клиенте
    */
-  const browserViewer = {
-    start: () => stores.connectionStore.fetchIdSession(),
-    close: () => stores.connectionStore.closeSession(),
-  };
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
   });
 
-  window.browserViewer = browserViewer;
+  onMount(() => {
+    sessionStorage.setItem('browsingWiever', `${sessionId}`);
+  });
 </script>
 
 <!-- страница подключение клиента к оператору -->
