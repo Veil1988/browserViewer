@@ -1,5 +1,6 @@
 <script context="module">
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
+  import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
 
   import { onMount } from 'svelte/internal';
 
@@ -33,4 +34,5 @@
 <div>
   <h1>Session Page User</h1>
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.user} />
+  <CloseActiveSession />
 </div>

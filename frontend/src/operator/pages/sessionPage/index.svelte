@@ -1,6 +1,7 @@
 <script context="module">
   import UserDesktop from '/components/events/UserDesktop/index.svelte';
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
+  import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
 
   import { onMount } from 'svelte/internal';
   import { TypeUsersEnum, MessageProps } from './../../../utils/messageSending/interfaces';
@@ -35,4 +36,5 @@
   <h1>Session Page Operator</h1>
   <UserDesktop {entryMessage} />
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.operator} />
+  <CloseActiveSession />
 </div>

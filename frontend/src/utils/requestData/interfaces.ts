@@ -26,6 +26,8 @@ export enum ActionOperatorRequestEnum {
   getSessionListEventSource = 'getSessionListEventSource',
   /** Подключение к клиенту */
   connectToUserEventSource = 'connectToUserEventSource',
+  /** Закрытие сессии */
+  closeSession = 'closeSession',
 }
 
 /** Типы запросов пользователя */

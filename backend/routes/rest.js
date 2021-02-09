@@ -28,14 +28,13 @@ router.post("/user/closeSession", async (req, res) => {
   const body = await JSON.parse(bodyJSON);
   if ("sessionId" in body && body.sessionId) {
     const { sessionId } = body;
-    const status = await closeSession(sessionId);
-    console.log("status", status);
+    const status = await closeSession(sessionId, "user");
     switch (status) {
       case "closeOnlyUser":
         res.status(200).send({ message: "Session closed" });
         break;
-      // TODO
       case "closeUserAndOperator":
+        res.status(200).send({ message: "Session closed" });
         break;
       default:
         res.status(400).send({ error: "Server Error" });
@@ -95,6 +94,28 @@ router.get(
     }
   }
 );
+
+router.post("/operator/closeSession", async (req, res) => {
+  const { body: bodyJSON } = req;
+  const body = await JSON.parse(bodyJSON);
+  if ("sessionId" in body && body.sessionId) {
+    const { sessionId } = body;
+    const status = await closeSession(sessionId, "operator");
+    switch (status) {
+      case "closeOnlyUser":
+        res.status(200).send({ message: "Session closed" });
+        break;
+      case "closeUserAndOperator":
+        res.status(200).send({ message: "Session closed" });
+        break;
+      default:
+        res.status(400).send({ error: "Server Error" });
+        break;
+    }
+  } else {
+    res.status(400).send({ error: "Request Error" });
+  }
+});
 
 router.post("/operator/sessionMessage", async (req, res) => {
   const { body: bodyJSON } = req;

@@ -1,4 +1,6 @@
 import { makeAutoObservable, observable, action } from 'mobx';
+import { requestData } from 'utils/requestData';
+import { ConnectionStoreProps, SessionStatusEnum } from './interfaces';
 import isEqual from 'lodash.isequal';
 
 import { sseReciver } from 'utils/sseReciver';
@@ -8,10 +10,9 @@ import {
   TypeUsersEnum,
   ActionOperatorRequestEnum,
   DevelopUrlEnum,
+  MethodEnum
 } from 'utils/requestData/interfaces';
 import { MessageProps } from './../../../utils/messageSending/interfaces';
-
-import { ConnectionStoreProps, SessionStatusEnum } from './interfaces';
 
 class ConnectionStoreClass {
   // ** статус сессии */
@@ -75,6 +76,39 @@ class ConnectionStoreClass {
     } else {
       console.log('error from closeServerSubscribeEvents: this.eventSource = null');
     }
+  };
+
+  closeSession = async (): Promise<void> => {
+    if (this.sessionId) {
+      await requestData({
+        userType: TypeUsersEnum.operator,
+        requestType: ActionOperatorRequestEnum.closeSession,
+        method: MethodEnum.post,
+        data: {
+          sessionId: this.sessionId,
+        },
+      });
+      // ** очистка store сессии */
+      this.sessionId = null;
+      this.status = null;
+    }
+
+    // ** закрытие прошлой сессии после перезагрузки */
+    // TODO нету подобного на операторе
+    const prevSessionId = sessionStorage.getItem('browsingWiever');
+    if (!this.sessionId && prevSessionId) {
+      await requestData({
+        userType: TypeUsersEnum.operator,
+        requestType: ActionOperatorRequestEnum.closeSession,
+        method: MethodEnum.post,
+        data: {
+          sessionId: Number(prevSessionId),
+        },
+      });
+      // ** Очистка sessionStorage */
+      sessionStorage.removeItem('browsingWiever');
+    }
+    // ** TODO ошибка если гавно с ID и его нету */
   };
 
   // ** подключение оператора к пользователю */
