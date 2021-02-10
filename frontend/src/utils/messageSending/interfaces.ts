@@ -36,6 +36,8 @@ export enum MessageSendingTypeUser {
   scrollEvent = 'scrollEvent',
   /** Отправка рабочего стола */
   userDesktop = 'userDesktop',
+  /** Отправка клика клиента */
+  userClick = 'userClick'
 }
 
 export enum MessageSendingTypeOperator {
@@ -54,7 +56,7 @@ export interface MessageSendingProps {
   userType: keyof typeof TypeUsersEnum;
   sessionId: number;
   messageType: keyof typeof MessageSendingTypeUser | keyof typeof MessageSendingTypeOperator;
-  message?: EmptyMessage | DesktopMessage | VoiceMessage | {status: SetSessionStatus.active};
+  message?: UserClick | EmptyMessage | DesktopMessage | VoiceMessage | {status: SetSessionStatus.active};
 }
 
 export interface EmptyMessage {
@@ -63,6 +65,15 @@ export interface EmptyMessage {
 
 export interface StatusMessage {
   status: SetSessionStatus.active;
+}
+
+export interface UserClick {
+  messageToOperator: {
+    messageType: MessageSendingTypeUser.userClick;
+    data: {
+      clientX: number, clientY: number
+    };
+  };
 }
 
 export interface DesktopMessage {

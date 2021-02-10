@@ -4,13 +4,34 @@ import { messageSending } from 'utils/messageSending';
 import { screenUserDesktop } from 'utils/events/screenUserDesktop';
 import { ScreenUserDesktopProps } from 'utils/events/screenUserDesktop/interfaces';
 import { TypeUsersEnum, MessageSendingTypeUser } from 'utils/messageSending/interfaces';
-import { EventsStoreProps } from './interfaces';
+import { EventsStoreProps, SendClickDataProps } from './interfaces';
 
 class EventsStoreClass {
   constructor() {
     makeAutoObservable(this, {
       sendDesktopToOperator: action,
     });
+  }
+
+  /** событие клика */
+  sendClick = async (event: MouseEvent, sessionId: number) => {
+    console.log('suka', event, sessionId)
+    if (event) {
+      const data: SendClickDataProps = { clientX: event.clientX, clientY: event.clientY };
+      if (sessionId) {
+        messageSending({
+          sessionId,
+          userType: TypeUsersEnum.user,
+          messageType: MessageSendingTypeUser.userClick,
+          message: {
+            messageToOperator: {
+              messageType: MessageSendingTypeUser.userClick,
+              data,
+            }
+          }
+        })
+      }
+    }
   }
 
   /** отправка рабочего стола оператору */

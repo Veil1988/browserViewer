@@ -2,7 +2,7 @@
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
   import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
 
-  import { onMount } from 'svelte/internal';
+  import { onMount, onDestroy } from 'svelte/internal';
 
   import { connect } from 'svelte-mobx';
 
@@ -18,16 +18,25 @@
   let sessionId: number;
   let entryMessage: MessageProps | {} = {};
   let handleCloseActiveSession: () => void;
+  let sendClick: (event: MouseEvent, sessionId: number) => void;
 
   $: autorun(() => {
-    sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
     entryMessage = stores.connectionStore.entryMessage;
     sessionId = stores.connectionStore.sessionId;
     handleCloseActiveSession = stores.connectionStore.closeSession;
+    // EVENTS
+    sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
+    sendClick = stores.eventsStore.sendClick;
   });
 
   onMount(() => {
     sendDesktopToOperator(sessionId);
+
+    window.addEventListener('click', (event) => sendClick(event, sessionId));
+  });
+
+  onDestroy(() => {
+    window.removeEventListener('click', (event) => sendClick(event, sessionId));
   });
 </script>
 
