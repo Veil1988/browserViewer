@@ -1,0 +1,7 @@
+.browserViewer-clickOperator {
+    position: absolute;
+    pointer-events: none;
+    opacity: 1;
+
+    transition: all 0.25;
+}

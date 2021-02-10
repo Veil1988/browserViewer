@@ -2,6 +2,7 @@
   import UserDesktop from '/components/events/UserDesktop/index.svelte';
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
   import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
+  import Clicks from '/components/events/Clicks/index.svelte';
 
   import { onMount } from 'svelte/internal';
   import { TypeUsersEnum, MessageProps } from './../../../utils/messageSending/interfaces';
@@ -42,4 +43,5 @@
   <UserDesktop {entryMessage} />
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.operator} />
   <CloseActiveSession {handleCloseActiveSession} />
+  <Clicks {entryMessage} />
 </div>
