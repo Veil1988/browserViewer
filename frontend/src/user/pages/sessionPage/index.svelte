@@ -32,7 +32,10 @@
   onMount(() => {
     sendDesktopToOperator(sessionId);
 
-    window.addEventListener('click', (event) => sendClick(event, sessionId));
+    window.addEventListener('click', (event) => {
+      console.log('111');
+      sendClick(event, sessionId);
+    });
   });
 
   onDestroy(() => {
