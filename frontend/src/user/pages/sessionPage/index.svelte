@@ -38,18 +38,11 @@
     sendClick = stores.eventsStore.sendClick;
   });
 
-  const mutationCallback: MutationCallback = async (mutationsList: MutationRecord[]) => {
-    console.log('---', mutationsList);
+  const mutationCallback: MutationCallback = async () => {
+    // Философия - чисто гипотетически пока отправляется сообщение теряем мутации дерева?
+    // МБ - debounce the best for this solution
     if (!isSending) {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-          console.log('suka');
-          // await sendDesktopToOperator(sessionId);
-        } else if (mutation.type === 'attributes') {
-          console.log('pes');
-          await sendDesktopToOperator(sessionId);
-        }
-      }
+      await sendDesktopToOperator(sessionId);
     }
   };
 

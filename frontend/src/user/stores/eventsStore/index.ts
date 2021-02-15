@@ -38,7 +38,7 @@ class EventsStoreClass {
 
   /** отправка рабочего стола оператору */
   sendDesktopToOperator = async (sessionId: number): Promise<void> => {
-    if (sessionId) {
+    if (sessionId && !this.isSending) {
       this.isSending = true;
       const data: ScreenUserDesktopProps = await screenUserDesktop();
 
