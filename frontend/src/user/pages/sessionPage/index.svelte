@@ -21,17 +21,51 @@
   let handleCloseActiveSession: () => void;
   let sendClick: (event: MouseEvent, sessionId: number) => void;
 
+  let isSending: boolean;
+
+  const htmlElementUser = document.querySelector('html');
+
+  let mutationObserver: MutationObserver | null = null;
+
   $: autorun(() => {
     entryMessage = stores.connectionStore.entryMessage;
     sessionId = stores.connectionStore.sessionId;
     handleCloseActiveSession = stores.connectionStore.closeSession;
+
     // EVENTS
+    isSending = stores.eventsStore.isSending;
     sendDesktopToOperator = stores.eventsStore.sendDesktopToOperator;
     sendClick = stores.eventsStore.sendClick;
   });
 
-  onMount(() => {
-    sendDesktopToOperator(sessionId);
+  const mutationCallback: MutationCallback = async (mutationsList: MutationRecord[]) => {
+    console.log('---', mutationsList);
+    if (!isSending) {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          console.log('suka');
+          // await sendDesktopToOperator(sessionId);
+        } else if (mutation.type === 'attributes') {
+          console.log('pes');
+          await sendDesktopToOperator(sessionId);
+        }
+      }
+    }
+  };
+
+  onMount(async () => {
+    await sendDesktopToOperator(sessionId);
+
+    if (htmlElementUser) {
+      mutationObserver = new MutationObserver(mutationCallback);
+
+      mutationObserver.observe(htmlElementUser, {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    }
 
     window.addEventListener('click', (event) => {
       sendClick(event, sessionId);
@@ -40,6 +74,8 @@
 
   onDestroy(() => {
     window.removeEventListener('click', (event) => sendClick(event, sessionId));
+
+    mutationObserver?.disconnect();
   });
 </script>
 

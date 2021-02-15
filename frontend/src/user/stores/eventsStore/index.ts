@@ -1,4 +1,4 @@
-import { makeAutoObservable, action } from 'mobx';
+import { makeAutoObservable, action, observable } from 'mobx';
 
 import { messageSending } from 'utils/messageSending';
 import { screenUserDesktop } from 'utils/events/screenUserDesktop';
@@ -7,9 +7,12 @@ import { TypeUsersEnum, MessageSendingTypeUser } from 'utils/messageSending/inte
 import { EventsStoreProps, SendClickDataProps } from './interfaces';
 
 class EventsStoreClass {
+  isSending = false;
   constructor() {
     makeAutoObservable(this, {
+      isSending: observable,
       sendDesktopToOperator: action,
+      sendClick: action
     });
   }
 
@@ -36,9 +39,10 @@ class EventsStoreClass {
   /** отправка рабочего стола оператору */
   sendDesktopToOperator = async (sessionId: number): Promise<void> => {
     if (sessionId) {
+      this.isSending = true;
       const data: ScreenUserDesktopProps = await screenUserDesktop();
 
-      messageSending({
+      await messageSending({
         sessionId,
         userType: TypeUsersEnum.user,
         messageType: MessageSendingTypeUser.userDesktop,
@@ -49,6 +53,8 @@ class EventsStoreClass {
           },
         },
       });
+
+      this.isSending = false;
     }
   };
 }
