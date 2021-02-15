@@ -4,7 +4,7 @@
   import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
   import Clicks from '/components/events/Clicks/index.svelte';
 
-  import { onMount } from 'svelte/internal';
+  import { onMount, onDestroy } from 'svelte/internal';
   import { TypeUsersEnum, MessageProps } from './../../../utils/messageSending/interfaces';
 
   // TODO разобраться что за хуйня с index.ts/svelte
@@ -21,12 +21,15 @@
   let activateSession: (sessionId: number) => void;
   let entryMessage: MessageProps | {} = {};
   let handleCloseActiveSession: () => void;
+  let sendClick: (event: MouseEvent, sessionId: number) => void;
 
   $: autorun(() => {
     sessionId = stores.connectionStore.sessionId;
     entryMessage = stores.connectionStore.entryMessage;
     activateSession = stores.eventStore.activateSession;
     handleCloseActiveSession = stores.connectionStore.closeSession;
+
+    sendClick = stores.eventStore.sendClick;
   });
 
   onMount(() => {
@@ -34,7 +37,15 @@
       activateSession(sessionId);
 
       sessionStorage.setItem('browsingWiever', `${sessionId}`);
+
+      window.addEventListener('click', (event) => {
+        sendClick(event, sessionId);
+      });
     }
+  });
+
+  onDestroy(() => {
+    window.removeEventListener('click', (event) => sendClick(event, sessionId));
   });
 </script>
 

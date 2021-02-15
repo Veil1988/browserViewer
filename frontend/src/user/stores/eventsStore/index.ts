@@ -15,7 +15,6 @@ class EventsStoreClass {
 
   /** событие клика */
   sendClick = async (event: MouseEvent, sessionId: number) => {
-    console.log('suka', event, sessionId)
     if (event) {
       const data: SendClickDataProps = { clientX: event.clientX, clientY: event.clientY };
       if (sessionId) {

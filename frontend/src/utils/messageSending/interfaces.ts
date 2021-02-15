@@ -49,6 +49,8 @@ export enum MessageSendingTypeOperator {
   voiceEvent = 'voiceEvent',
   /** Отправка статуса сессии необходимо только для оператора */
   activateSession = 'activateSession',
+  /** Отправка клика клиента */
+  userClick = 'userClick'
 }
 
 /** Типизация входящих параметров в RequestData */
@@ -68,8 +70,8 @@ export interface StatusMessage {
 }
 
 export interface UserClick {
-  messageToOperator: {
-    messageType: MessageSendingTypeUser.userClick;
+  [x: string]: {
+    messageType: MessageSendingTypeUser.userClick | MessageSendingTypeOperator.userClick;
     data: {
       clientX: number, clientY: number
     };

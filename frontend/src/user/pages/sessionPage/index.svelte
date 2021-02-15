@@ -1,6 +1,7 @@
 <script context="module">
   import VoiceMessage from '/components/events/VoiceMessage/index.svelte';
   import CloseActiveSession from '/components/events/CloseActiveSession/index.svelte';
+  import Clicks from '/components/events/Clicks/index.svelte';
 
   import { onMount, onDestroy } from 'svelte/internal';
 
@@ -33,7 +34,6 @@
     sendDesktopToOperator(sessionId);
 
     window.addEventListener('click', (event) => {
-      console.log('111');
       sendClick(event, sessionId);
     });
   });
@@ -48,4 +48,5 @@
   <h1>Session Page User</h1>
   <VoiceMessage {entryMessage} {sessionId} userType={TypeUsersEnum.user} />
   <CloseActiveSession {handleCloseActiveSession} />
+  <Clicks {entryMessage} />
 </div>
